@@ -1,0 +1,25 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate && npx cap sync",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.6.0",
+    "nuxt": "^3.9.0",
+    "vue": "^3.4.6",
+    "vue-router": "^4.2.5"
+  },
+  "dependencies": {
+    "@capacitor/core": "^5.6.0",
+    "@capacitor/ios": "^5.6.0",
+    "@capacitor/motion": "^5.0.6",
+    "@pinia/nuxt": "^0.5.1",
+    "@vueuse/nuxt": "^10.7.1"
+  }
+}
