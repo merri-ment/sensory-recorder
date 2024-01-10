@@ -1,6 +1,4 @@
 <script setup>
-import { Motion } from "@capacitor/motion";
-
 const {
   requestPermission,
   startRecording,
@@ -12,8 +10,14 @@ const {
   gamma,
 } = useDeviceMotion();
 
-const enter = () => {};
-const leave = () => {};
+const router = useRouter();
+
+const enter = (el, done) => {
+  done();
+};
+const leave = (el, done) => {
+  done();
+};
 
 const onRecordClick = async () => {
   await requestPermission();
@@ -22,6 +26,7 @@ const onRecordClick = async () => {
 
 const onStopRecordClick = () => {
   stopRecording();
+  router.push("recordings");
 };
 </script>
 

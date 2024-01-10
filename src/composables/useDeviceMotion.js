@@ -3,6 +3,8 @@ import { Motion } from "@capacitor/motion";
 export const useDeviceMotion = function () {
   let accelHandler;
 
+  const { appStore } = useStores();
+
   const acceleration = reactive({ x: 0, y: 0, z: 0 });
   const alpha = ref(0);
   const beta = ref(0);
@@ -17,7 +19,7 @@ export const useDeviceMotion = function () {
       if (permissionGranted.value) {
         return true;
       } else {
-        await DeviceMotionEvent.requestPermission();
+        await window.DeviceMotionEvent.requestPermission();
         permissionGranted.value = true;
       }
     } catch (e) {
@@ -65,7 +67,13 @@ export const useDeviceMotion = function () {
     if (permissionGranted.value) {
       isRecording.value = false;
       Motion.removeAllListeners();
-      console.log(recordedData.value);
+
+      const len = appStore.recordings.length;
+      appStore.recordings.push({
+        id: len,
+        title: `Session ${len}`,
+        data: recordedData.value,
+      });
       if (accelHandler) {
         accelHandler.remove();
       }
