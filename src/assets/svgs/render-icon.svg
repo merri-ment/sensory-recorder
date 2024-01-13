@@ -1,0 +1,418 @@
+<svg width="282" height="291" viewBox="0 0 282 291" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="render-icon">
+<g id="compile-group">
+<g id="compile-row-1">
+<mask id="mask0_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="5" y="-1" width="275" height="97">
+<g id="mask0_941_72">
+<path id="Vector" d="M279.086 -1H5.02344V96H279.086V-1Z" fill="#D9D9D9"></path>
+</g>
+</mask>
+<g mask="url(#mask0_953_747)">
+<g id="compile-frame-1" class="compile-frame">
+<g id="mountains">
+<mask id="mask1_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="11" y="34" width="62" height="62">
+<rect id="frame-7" x="11" y="34" width="62" height="62" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask1_953_747)">
+<g id="mountains-inner" class="compile-mountain-frame">
+<path id="left-mountain" d="M53 95L27.6067 63C27.6067 63 20.4157 71.6667 13 80.3333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<g id="Group 42">
+<mask id="mask2_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="27" y="63" width="44" height="32">
+<path id="Vector 145" d="M27.5 63L52.5 94.5H71V63H27.5Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask2_953_747)">
+<path id="right-mountain" d="M70 95L50.4444 72C50.4444 72 46.6667 76.1818 42 81.5253" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-right"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="sun">
+<mask id="mask3_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="13" y="36" width="59" height="58">
+<path id="Vector 144" d="M13 80V37L70.5 36.5L71.5 90.5L69 94L50.5 72L42 81.5L27.5 63.5L13 80Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask3_953_747)">
+<path id="Vector" d="M47.5 59C51.0899 59 54 56.0898 54 52.5C54 48.9101 51.0899 46 47.5 46C43.9101 46 41 48.9101 41 52.5C41 56.0898 43.9101 59 47.5 59Z" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-sun"></path>
+</g>
+</g>
+<rect id="border" x="13" y="36" width="58" height="58" stroke="white" stroke-width="4"></rect>
+</g>
+<g id="compile-frame-2" class="compile-frame">
+<g id="mountains_2">
+<mask id="mask4_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="110" y="34" width="62" height="62">
+<rect id="frame-7_2" x="110" y="34" width="62" height="62" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask4_953_747)">
+<g id="mountains-inner" class="compile-mountain-frame">
+<path id="left-mountain_2" d="M152 95L126.607 63C126.607 63 119.416 71.6667 112 80.3333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<g id="Group 42_2">
+<mask id="mask5_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="126" y="63" width="44" height="32">
+<path id="Vector 145_2" d="M126.5 63L151.5 94.5H170V63H126.5Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask5_953_747)">
+<path id="right-mountain" d="M169 95L149.444 72C149.444 72 145.667 76.1818 141 81.5253" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-right"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="sun_2">
+<mask id="mask6_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="112" y="36" width="59" height="58">
+<path id="Vector 144_2" d="M112 80V37L169.5 36.5L170.5 90.5L168 94L149.5 72L141 81.5L126.5 63.5L112 80Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask6_953_747)">
+<path id="Vector" d="M146.5 59C150.09 59 153 56.0898 153 52.5C153 48.9101 150.09 46 146.5 46C142.91 46 140 48.9101 140 52.5C140 56.0898 142.91 59 146.5 59Z" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-sun"></path>
+</g>
+</g>
+<rect id="border_2" x="112" y="36" width="58" height="58" stroke="white" stroke-width="4"></rect>
+</g>
+<g id="compile-frame-3" class="compile-frame">
+<g id="mountains_3">
+<mask id="mask7_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="207" y="34" width="62" height="62">
+<rect id="frame-7_3" x="207" y="34" width="62" height="62" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask7_953_747)">
+<g id="mountains-inner" class="compile-mountain-frame">
+<path id="left-mountain_3" d="M249 95L223.607 63C223.607 63 216.416 71.6667 209 80.3333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<g id="Group 42_3">
+<mask id="mask8_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="223" y="63" width="44" height="32">
+<path id="Vector 145_3" d="M223.5 63L248.5 94.5H267V63H223.5Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask8_953_747)">
+<path id="right-mountain" d="M266 95L246.444 72C246.444 72 242.667 76.1818 238 81.5253" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-right"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="sun_3">
+<mask id="mask9_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="209" y="36" width="59" height="58">
+<path id="Vector 144_3" d="M209 80V37L266.5 36.5L267.5 90.5L265 94L246.5 72L238 81.5L223.5 63.5L209 80Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask9_953_747)">
+<path id="Vector" d="M243.5 59C247.09 59 250 56.0898 250 52.5C250 48.9101 247.09 46 243.5 46C239.91 46 237 48.9101 237 52.5C237 56.0898 239.91 59 243.5 59Z" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-sun"></path>
+</g>
+</g>
+<rect id="border_3" x="209" y="36" width="58" height="58" stroke="white" stroke-width="4"></rect>
+</g>
+</g>
+</g>
+<g id="compile-row-2">
+<mask id="mask10_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="5" y="96" width="275" height="97">
+<g id="mask1_941_72">
+<path id="Vector_2" d="M279.086 96H5.02344V193H279.086V96Z" fill="#D9D9D9"></path>
+</g>
+</mask>
+<g mask="url(#mask10_953_747)">
+<g id="compile-frame-4" class="compile-frame">
+<g id="mountains_4">
+<mask id="mask11_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="11" y="131" width="62" height="62">
+<rect id="frame-7_4" x="11" y="131" width="62" height="62" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask11_953_747)">
+<g id="mountains-inner" class="compile-mountain-frame">
+<path id="left-mountain_4" d="M53 192L27.6067 160C27.6067 160 20.4157 168.667 13 177.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<g id="Group 42_4">
+<mask id="mask12_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="27" y="160" width="44" height="32">
+<path id="Vector 145_4" d="M27.5 160L52.5 191.5H71V160H27.5Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask12_953_747)">
+<path id="right-mountain" d="M70 192L50.4444 169C50.4444 169 46.6667 173.182 42 178.525" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-right"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="sun_4">
+<mask id="mask13_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="13" y="133" width="59" height="58">
+<path id="Vector 144_4" d="M13 177V134L70.5 133.5L71.5 187.5L69 191L50.5 169L42 178.5L27.5 160.5L13 177Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask13_953_747)">
+<path id="Vector" d="M47.5 156C51.0899 156 54 153.09 54 149.5C54 145.91 51.0899 143 47.5 143C43.9101 143 41 145.91 41 149.5C41 153.09 43.9101 156 47.5 156Z" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-sun"></path>
+</g>
+</g>
+<rect id="border_4" x="13" y="133" width="58" height="58" stroke="white" stroke-width="4"></rect>
+</g>
+<g id="compile-frame-5" class="compile-frame">
+<g id="mountains_5">
+<mask id="mask14_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="110" y="131" width="62" height="62">
+<rect id="frame-7_5" x="110" y="131" width="62" height="62" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask14_953_747)">
+<g id="mountains-inner" class="compile-mountain-frame">
+<path id="left-mountain_5" d="M152 192L126.607 160C126.607 160 119.416 168.667 112 177.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<g id="Group 42_5">
+<mask id="mask15_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="126" y="160" width="44" height="32">
+<path id="Vector 145_5" d="M126.5 160L151.5 191.5H170V160H126.5Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask15_953_747)">
+<path id="right-mountain" d="M169 192L149.444 169C149.444 169 145.667 173.182 141 178.525" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-right"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="sun_5">
+<mask id="mask16_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="112" y="133" width="59" height="58">
+<path id="Vector 144_5" d="M112 177V134L169.5 133.5L170.5 187.5L168 191L149.5 169L141 178.5L126.5 160.5L112 177Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask16_953_747)">
+<path id="Vector" d="M146.5 156C150.09 156 153 153.09 153 149.5C153 145.91 150.09 143 146.5 143C142.91 143 140 145.91 140 149.5C140 153.09 142.91 156 146.5 156Z" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-sun"></path>
+</g>
+</g>
+<rect id="border_5" x="112" y="133" width="58" height="58" stroke="white" stroke-width="4"></rect>
+</g>
+<g id="compile-frame-6" class="compile-frame">
+<g id="mountains_6">
+<mask id="mask17_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="207" y="131" width="62" height="62">
+<rect id="frame-7_6" x="207" y="131" width="62" height="62" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask17_953_747)">
+<g id="mountains-inner" class="compile-mountain-frame">
+<path id="left-mountain_6" d="M249 192L223.607 160C223.607 160 216.416 168.667 209 177.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<g id="Group 42_6">
+<mask id="mask18_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="223" y="160" width="44" height="32">
+<path id="Vector 145_6" d="M223.5 160L248.5 191.5H267V160H223.5Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask18_953_747)">
+<path id="right-mountain" d="M266 192L246.444 169C246.444 169 242.667 173.182 238 178.525" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-right"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="sun_6">
+<mask id="mask19_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="209" y="133" width="59" height="58">
+<path id="Vector 144_6" d="M209 177V134L266.5 133.5L267.5 187.5L265 191L246.5 169L238 178.5L223.5 160.5L209 177Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask19_953_747)">
+<path id="Vector" d="M243.5 156C247.09 156 250 153.09 250 149.5C250 145.91 247.09 143 243.5 143C239.91 143 237 145.91 237 149.5C237 153.09 239.91 156 243.5 156Z" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-sun"></path>
+</g>
+</g>
+<rect id="border_6" x="209" y="133" width="58" height="58" stroke="white" stroke-width="4"></rect>
+</g>
+</g>
+</g>
+<g id="compile-row-3">
+<mask id="mask20_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="5" y="193" width="275" height="97">
+<g id="mask2_941_72">
+<path id="Vector_3" d="M279.086 193H5.02344V290H279.086V193Z" fill="#D9D9D9"></path>
+</g>
+</mask>
+<g mask="url(#mask20_953_747)">
+<g id="compile-frame-7" class="compile-frame">
+<g id="mountains_7">
+<mask id="mask21_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="11" y="228" width="62" height="62">
+<rect id="frame-7_7" x="11" y="228" width="62" height="62" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask21_953_747)">
+<g id="mountains-inner" class="compile-mountain-frame">
+<path id="left-mountain_7" d="M53 289L27.6067 257C27.6067 257 20.4157 265.667 13 274.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<g id="Group 42_7">
+<mask id="mask22_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="27" y="257" width="44" height="32">
+<path id="Vector 145_7" d="M27.5 257L52.5 288.5H71V257H27.5Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask22_953_747)">
+<path id="right-mountain" d="M70 289L50.4444 266C50.4444 266 46.6667 270.182 42 275.525" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-right"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="sun_7">
+<mask id="mask23_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="13" y="230" width="59" height="58">
+<path id="Vector 144_7" d="M13 274V231L70.5 230.5L71.5 284.5L69 288L50.5 266L42 275.5L27.5 257.5L13 274Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask23_953_747)">
+<path id="Vector" d="M47.5 253C51.0899 253 54 250.09 54 246.5C54 242.91 51.0899 240 47.5 240C43.9101 240 41 242.91 41 246.5C41 250.09 43.9101 253 47.5 253Z" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-sun"></path>
+</g>
+</g>
+<rect id="border_7" x="13" y="230" width="58" height="58" stroke="white" stroke-width="4"></rect>
+</g>
+<g id="compile-frame-8" class="compile-frame">
+<g id="mountains_8">
+<mask id="mask24_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="110" y="228" width="62" height="62">
+<rect id="frame-7_8" x="110" y="228" width="62" height="62" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask24_953_747)">
+<g id="mountains-inner" class="compile-mountain-frame">
+<path id="left-mountain_8" d="M152 289L126.607 257C126.607 257 119.416 265.667 112 274.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<g id="Group 42_8">
+<mask id="mask25_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="126" y="257" width="44" height="32">
+<path id="Vector 145_8" d="M126.5 257L151.5 288.5H170V257H126.5Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask25_953_747)">
+<path id="right-mountain" d="M169 289L149.444 266C149.444 266 145.667 270.182 141 275.525" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-right"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="sun_8">
+<mask id="mask26_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="112" y="230" width="59" height="58">
+<path id="Vector 144_8" d="M112 274V231L169.5 230.5L170.5 284.5L168 288L149.5 266L141 275.5L126.5 257.5L112 274Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask26_953_747)">
+<path id="Vector" d="M146.5 253C150.09 253 153 250.09 153 246.5C153 242.91 150.09 240 146.5 240C142.91 240 140 242.91 140 246.5C140 250.09 142.91 253 146.5 253Z" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-sun"></path>
+</g>
+</g>
+<rect id="border_8" x="112" y="230" width="58" height="58" stroke="white" stroke-width="4"></rect>
+</g>
+<g id="compile-frame-9" class="compile-frame">
+<g id="mountains_9">
+<mask id="mask27_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="207" y="228" width="62" height="62">
+<rect id="frame-7_9" x="207" y="228" width="62" height="62" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask27_953_747)">
+<g id="mountains-inner" class="compile-mountain-frame">
+<path id="left-mountain_9" d="M249 289L223.607 257C223.607 257 216.416 265.667 209 274.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<g id="Group 42_9">
+<mask id="mask28_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="223" y="257" width="44" height="32">
+<path id="Vector 145_9" d="M223.5 257L248.5 288.5H267V257H223.5Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask28_953_747)">
+<path id="right-mountain" d="M266 289L246.444 266C246.444 266 242.667 270.182 238 275.525" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-right"></path>
+</g>
+</g>
+</g>
+</g>
+</g>
+<g id="sun_9">
+<mask id="mask29_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="209" y="230" width="59" height="58">
+<path id="Vector 144_9" d="M209 274V231L266.5 230.5L267.5 284.5L265 288L246.5 266L238 275.5L223.5 257.5L209 274Z" fill="#D9D9D9"></path>
+</mask>
+<g mask="url(#mask29_953_747)">
+<path id="Vector" d="M243.5 253C247.09 253 250 250.09 250 246.5C250 242.91 247.09 240 243.5 240C239.91 240 237 242.91 237 246.5C237 250.09 239.91 253 243.5 253Z" stroke="white" stroke-width="4" stroke-miterlimit="10" class="compile-mountain-frame-sun"></path>
+</g>
+</g>
+<rect id="border_9" x="209" y="230" width="58" height="58" stroke="white" stroke-width="4"></rect>
+</g>
+</g>
+</g>
+<g id="compile-lines">
+<path id="compile-line-1" d="M2.01172 94H82.825" stroke="white" stroke-width="4" stroke-linecap="round" class="compile-line"></path>
+<path id="compile-line-2" d="M100.393 94H181.206" stroke="white" stroke-width="4" stroke-linecap="round" class="compile-line"></path>
+<path id="compile-line-3" d="M197.771 94H278.584" stroke="white" stroke-width="4" stroke-linecap="round" class="compile-line"></path>
+<path id="compile-line-4" d="M2.01172 191H82.825" stroke="white" stroke-width="4" stroke-linecap="round" class="compile-line"></path>
+<path id="compile-line-5" d="M100.393 191H181.206" stroke="white" stroke-width="4" stroke-linecap="round" class="compile-line"></path>
+<path id="compile-line-6" d="M197.771 191H278.584" stroke="white" stroke-width="4" stroke-linecap="round" class="compile-line"></path>
+<path id="compile-line-7" d="M2.01172 288H82.825" stroke="white" stroke-width="4" stroke-linecap="round" class="compile-line"></path>
+<path id="compile-line-8" d="M100.393 288H181.206" stroke="white" stroke-width="4" stroke-linecap="round" class="compile-line"></path>
+<path id="compile-line-9" d="M197.771 288H278.584" stroke="white" stroke-width="4" stroke-linecap="round" class="compile-line"></path>
+</g>
+</g>
+<g id="render-group">
+<g id="render-frame-1">
+<path id="render-frame-1-fill" d="M73 34H11V96H73V34Z" fill="white"></path>
+<path id="render-frame-1-border" d="M71 36H13V94H71V36Z" stroke="white" stroke-width="4"></path>
+<g id="mountains_10">
+<path id="left-mountain_10" d="M53 95L27.6067 63C27.6067 63 20.4157 71.6667 13 80.3333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_4" d="M70 95L50.4444 72C50.4444 72 46.6667 76.1818 42 81.5253" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_5" d="M47.5 59C51.0899 59 54 56.0898 54 52.5C54 48.9101 51.0899 46 47.5 46C43.9101 46 41 48.9101 41 52.5C41 56.0898 43.9101 59 47.5 59Z" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+</g>
+</g>
+<g id="render-frame-2">
+<path id="Vector_6" d="M170 36H112V94H170V36Z" stroke="white" stroke-width="4"></path>
+<g id="mountains_11">
+<path id="left-mountain_11" d="M152 95L126.607 63C126.607 63 119.416 71.6667 112 80.3333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_7" d="M169 95L149.444 72C149.444 72 145.667 76.1818 141 81.5253" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_8" d="M146.5 59C150.09 59 153 56.0898 153 52.5C153 48.9101 150.09 46 146.5 46C142.91 46 140 48.9101 140 52.5C140 56.0898 142.91 59 146.5 59Z" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+</g>
+</g>
+<g id="render-frame-3">
+<path id="render-frame-3-fill" d="M269 34H207V96H269V34Z" fill="white"></path>
+<path id="render-frame-3-border" d="M267 36H209V94H267V36Z" stroke="white" stroke-width="4"></path>
+<g id="mountains_12">
+<path id="left-mountain_12" d="M249 95L223.607 63C223.607 63 216.416 71.6667 209 80.3333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_9" d="M266 95L246.444 72C246.444 72 242.667 76.1818 238 81.5253" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_10" d="M243.5 59C247.09 59 250 56.0898 250 52.5C250 48.9101 247.09 46 243.5 46C239.91 46 237 48.9101 237 52.5C237 56.0898 239.91 59 243.5 59Z" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+</g>
+</g>
+<g id="render-frame-4">
+<path id="Vector_11" d="M71 133H13V191H71V133Z" stroke="white" stroke-width="4"></path>
+<g id="mountains_13">
+<path id="left-mountain_13" d="M53 192L27.6067 160C27.6067 160 20.4157 168.667 13 177.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_12" d="M70 192L50.4444 169C50.4444 169 46.6667 173.182 42 178.525" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_13" d="M47.5 156C51.0899 156 54 153.09 54 149.5C54 145.91 51.0899 143 47.5 143C43.9101 143 41 145.91 41 149.5C41 153.09 43.9101 156 47.5 156Z" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+</g>
+</g>
+<g id="render-frame-5">
+<path id="render-frame-5-fill-right" d="M172 131H110V193H172V131Z" fill="white"></path>
+<path id="render-frame-5-fill-left" d="M172 131H110V193H172V131Z" fill="white"></path>
+<path id="render-frame-5-border" d="M170 133H112V191H170V133Z" stroke="white" stroke-width="4"></path>
+<g id="mountains_14">
+<path id="left-mountain_14" d="M152 192L126.607 160C126.607 160 119.416 168.667 112 177.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_14" d="M169 192L149.444 169C149.444 169 145.667 173.182 141 178.525" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_15" d="M146.5 156C150.09 156 153 153.09 153 149.5C153 145.91 150.09 143 146.5 143C142.91 143 140 145.91 140 149.5C140 153.09 142.91 156 146.5 156Z" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+</g>
+</g>
+<g id="render-frame-6">
+<path id="Vector_16" d="M267 133H209V191H267V133Z" stroke="white" stroke-width="4"></path>
+<g id="mountains_15">
+<path id="left-mountain_15" d="M249 192L223.607 160C223.607 160 216.416 168.667 209 177.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_17" d="M266 192L246.444 169C246.444 169 242.667 173.182 238 178.525" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_18" d="M243.5 156C247.09 156 250 153.09 250 149.5C250 145.91 247.09 143 243.5 143C239.91 143 237 145.91 237 149.5C237 153.09 239.91 156 243.5 156Z" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+</g>
+</g>
+<g id="render-frame-7">
+<path id="render-frame-7-fill" d="M73 228H11V290H73V228Z" fill="white"></path>
+<path id="render-frame-7-border" d="M71 230H13V288H71V230Z" stroke="white" stroke-width="4"></path>
+<g id="mountains_16">
+<path id="left-mountain_16" d="M53 289L27.6067 257C27.6067 257 20.4157 265.667 13 274.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_19" d="M70 289L50.4444 266C50.4444 266 46.6667 270.182 42 275.525" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_20" d="M47.5 253C51.0899 253 54 250.09 54 246.5C54 242.91 51.0899 240 47.5 240C43.9101 240 41 242.91 41 246.5C41 250.09 43.9101 253 47.5 253Z" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+</g>
+</g>
+<g id="render-frame-8">
+<path id="Vector_21" d="M170 230H112V288H170V230Z" stroke="white" stroke-width="4"></path>
+<g id="mountains_17">
+<path id="left-mountain_17" d="M152 289L126.607 257C126.607 257 119.416 265.667 112 274.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_22" d="M169 289L149.444 266C149.444 266 145.667 270.182 141 275.525" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_23" d="M146.5 253C150.09 253 153 250.09 153 246.5C153 242.91 150.09 240 146.5 240C142.91 240 140 242.91 140 246.5C140 250.09 142.91 253 146.5 253Z" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+</g>
+</g>
+<g id="render-frame-9">
+<path id="render-frame-9-fill" d="M269 228H207V290H269V228Z" fill="white"></path>
+<path id="render-frame-9-border" d="M267 230H209V288H267V230Z" stroke="white" stroke-width="4"></path>
+<g id="mountains_18">
+<path id="left-mountain_18" d="M249 289L223.607 257C223.607 257 216.416 265.667 209 274.333" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="right-mountain" d="M266 289L246.444 266C246.444 266 242.667 270.182 238 275.525" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+<path id="Vector_24" d="M243.5 253C247.09 253 250 250.09 250 246.5C250 242.91 247.09 240 243.5 240C239.91 240 237 242.91 237 246.5C237 250.09 239.91 253 243.5 253Z" stroke="white" stroke-width="4" stroke-miterlimit="10"></path>
+</g>
+</g>
+<g id="render-final-mask-1">
+<mask id="mask30_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="198" y="29" width="83" height="103">
+<g id="mask3_606_12">
+<path id="Rectangle 20" d="M281 29H198V132H281V29Z" fill="#D9D9D9"></path>
+</g>
+</mask>
+<g mask="url(#mask30_953_747)">
+<g id="render-final-mask-frame-1">
+<path id="frame-9_2" d="M267 36H209V94H267V36Z" fill="white" stroke="white" stroke-width="4"></path>
+</g>
+</g>
+</g>
+<g id="render-final-mask-2">
+<mask id="mask31_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="9" y="191" width="66" height="97">
+<g id="mask4_606_12">
+<path id="Rectangle 21" d="M75 191H9V288H75V191Z" fill="#D9D9D9"></path>
+</g>
+</mask>
+<g mask="url(#mask31_953_747)">
+<g id="render-final-mask-frame-2">
+<path id="frame-1_2" d="M71 230H13V288H71V230Z" fill="white" stroke="white" stroke-width="4"></path>
+</g>
+</g>
+</g>
+<g id="render-final-mask-3">
+<mask id="mask32_953_747" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="108" y="29" width="66" height="133">
+<rect id="Rectangle 21_2" x="108" y="29" width="66" height="133" fill="#D9D9D9"></rect>
+</mask>
+<g mask="url(#mask32_953_747)">
+<rect id="render-final-mask-frame-3" x="110" y="34" width="62" height="62" fill="white"></rect>
+</g>
+</g>
+<path id="render-final-line" d="M100.393 162H181.206" stroke="white" stroke-width="4" stroke-linecap="round"></path>
+</g>
+</g>
+</svg>

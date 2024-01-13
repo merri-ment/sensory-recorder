@@ -1,6 +1,6 @@
 {
-  "appId": "info.merriment.sensoryrecorder",
-  "appName": "Sensory Recorder",
+  "appId": "info.merriment.gyrograph",
+  "appName": "Gyro Graph",
   "webDir": ".output/public",
   "server": {
     "androidScheme": "https"

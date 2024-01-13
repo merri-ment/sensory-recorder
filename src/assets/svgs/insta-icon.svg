@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36.17 36.15">
+   
+  <path class="cls-1" d="m35.92,21.8v10.02c0,2.25-1.82,4.07-4.07,4.07H4.32c-2.25,0-4.07-1.82-4.07-4.07V4.32C.25,2.07,2.07.25,4.32.25h27.52c2.25,0,4.07,1.82,4.07,4.07v13.75h-8.46"/>
+  <circle class="cls-2" cx="18.1" cy="18.76" r="6.05"/>
+  <circle class="cls-2" cx="18.1" cy="18.76" r="9.36"/>
+  <circle class="cls-2" cx="30.2" cy="5.66" r="2.04"/>
+  <rect class="cls-2" x="3.37" y="29.74" width="8.68" height="3.16"/>
+  <line class="cls-2" x1="4.33" y1=".25" x2="4.33" y2="18.07"/>
+  <polyline class="cls-2" points="8.4 .52 8.4 18.07 .25 18.07"/>
+  <line class="cls-2" x1="12.57" y1=".52" x2="12.57" y2="11.38"/>
+</svg>

@@ -1,0 +1,41 @@
+<svg width="1174" height="1040" viewBox="0 0 1174 1040" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="logo-wrap">
+    <g clip-path="url(#clip0_263_331)">
+      <path id="eye-left" d="M285.923 581.472C296.278 536.938 332.802 504.032 376.269 504.032C419.736 504.032 456.26 536.938 466.615 581.472" />
+      <path id="eye-right" d="M707.537 581.472C717.893 536.938 754.416 504.032 797.883 504.032C841.35 504.032 877.874 536.938 888.229 581.472"></path>
+      <mask id="maskSun" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-327" y="-136" width="1153" height="743">
+        <path d="M-326.5 605.5H181.5L380.5 38.5L588 605.5L791 68L825 -135.5H-326.5V605.5Z" fill="#D9D9D9" />
+      </mask>
+      <g mask="url(#maskSun)">
+        <path id="sun" d="M184 204.5C184 231.787 161.665 254 134 254C106.335 254 84 231.787 84 204.5C84 177.213 106.335 155 134 155C161.665 155 184 177.213 184 204.5Z" />
+      </g>
+      <path id="smile" d="M809.433 670.5C806.514 790.842 708.045 887.5 587 887.5C465.955 887.5 367.486 790.842 364.567 670.5H809.433Z" />
+      <mask id="mask0_263_331" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-415" y="-151" width="2003" height="1861">
+        <path id="mouth-mask-start" fill-rule="evenodd" clip-rule="evenodd" d="M1588 -151H-415V1710H1588V-151ZM815 665C815 790.921 712.921 893 587 893C461.079 893 359 790.921 359 665H815Z" fill="white" />
+        <path id="mouth-mask-end" d="M1140 1013.5H448.5L789.5 41L1140 1013.5Z" fill="#D9D9D9" />
+      </mask>
+      <mask id="maskA" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="236" y="-32" width="904" height="1046">
+        <path id="ball-mask-start" d="M1140 1013.5H382H236L486.5 -32L789.5 41L1140 1013.5Z" fill="#D9D9D9" />
+        <path id="ball-mask-end" d="M1140 1013.5H448.5L789.5 41L1140 1013.5Z" fill="#D9D9D9" class="hidden" />
+      </mask>
+      <g mask="url(#maskA)">
+        <circle id="ball" cx="587" cy="666" r="222" />
+      </g>
+      <g mask="url(#mask0_263_331)">
+        <path id="mountain-right-start" d="M1137.5 1012.5L789 47L448.5 1012.5" />
+        <path id="mountain-right-end" d="M789 1012.5V47L788 1012.5" class="hidden" />
+        <mask id="mask1_263_331" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-28" y="-36" width="847" height="1097">
+          <path d="M432 1060.5L819 -35.5H-27.5V1060.5H432Z" fill="#FD1414" />
+        </mask>
+        <g mask="url(#mask1_263_331)">
+          <path id="mountain-left" d="M731 1012.5L382.5 47L42 1012.5" />
+        </g>
+      </g>
+    </g>
+    <defs>
+      <clipPath id="clip0_263_331">
+        <rect width="1174" height="1040" />
+      </clipPath>
+    </defs>
+  </g>
+</svg>

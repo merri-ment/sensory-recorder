@@ -1,0 +1,116 @@
+<svg
+  ref="icon"
+  class="icon purchase-icon"
+  version="1.1"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  x="0px"
+  y="0px"
+  viewBox="0 0 78.6 91.9"
+  enable-background="new 0 0 78.6 91.9"
+  xml:space="preserve"
+>
+  <line
+    ref="light1"
+    fill="none"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-miterlimit="10"
+    x1="15.6"
+    y1="7.2"
+    x2="21.2"
+    y2="15"
+  />
+  <line
+    ref="light2"
+    fill="none"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-miterlimit="10"
+    x1="27.4"
+    y1="3.5"
+    x2="30.1"
+    y2="12.4"
+  />
+  <line
+    ref="light3"
+    fill="none"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-miterlimit="10"
+    x1="39.4"
+    y1="2.1"
+    x2="39.4"
+    y2="11.6"
+  />
+  <line
+    ref="light4"
+    fill="none"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-miterlimit="10"
+    x1="52"
+    y1="3.4"
+    x2="49"
+    y2="12.6"
+  />
+  <line
+    ref="light5"
+    fill="none"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-miterlimit="10"
+    x1="63.9"
+    y1="6.9"
+    x2="58"
+    y2="14.9"
+  />
+
+  <polyline
+    ref="outline"
+    fill="none"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-miterlimit="10"
+    points="50.5,23.5 
+    17.6,23.6 2.5,43.1 39.5,89.5 76.6,43.4 60.6,23.5 50.5,23.5 "
+  />
+  <line
+    ref="line"
+    fill="none"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-miterlimit="10"
+    x1="4.6"
+    y1="43.2"
+    x2="75"
+    y2="43.2"
+  />
+  <polyline
+    ref="v1"
+    fill="none"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-miterlimit="10"
+    points="52.2,43.2 
+    39.4,88 26.9,44.2 "
+  />
+  <polyline
+    ref="v2"
+    fill="none"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-miterlimit="10"
+    points="17.8,24.2 
+    26.5,43.1 39.1,23.6 "
+  />
+  <polyline
+    ref="v3"
+    fill="none"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-miterlimit="10"
+    points="40.1,24.6 
+    52.1,43.9 60.2,25.1 "
+  />
+</svg>

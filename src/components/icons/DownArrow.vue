@@ -1,0 +1,50 @@
+<script setup></script>
+
+<template>
+  <svg
+    class="ui-downarrow"
+    viewBox="0 0 24 15"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="9.33951"
+      y="11.634"
+      width="16.0641"
+      height="4"
+      transform="rotate(-45 9.33951 11.634)"
+      fill="white"
+    />
+    <rect
+      x="9.33951"
+      y="11.634"
+      width="16.0641"
+      height="4"
+      transform="rotate(-45 9.33951 11.634)"
+      fill="white"
+    />
+    <rect
+      x="3.65439"
+      y="0.274902"
+      width="16.0342"
+      height="4"
+      transform="rotate(45 3.65439 0.274902)"
+      fill="white"
+    />
+    <rect
+      x="3.65439"
+      y="0.274902"
+      width="16.0342"
+      height="4"
+      transform="rotate(45 3.65439 0.274902)"
+      fill="white"
+    />
+  </svg>
+</template>
+
+<style lang="sass" scoped>
+@import "@/styles/shared.sass"
+
+.ui-downarrow
+  width: 20px
+</style>

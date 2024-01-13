@@ -19,7 +19,7 @@ export const useDeviceMotion = function () {
       if (permissionGranted.value) {
         return true;
       } else {
-        await window.DeviceMotionEvent.requestPermission();
+        await DeviceMotionEvent.requestPermission();
         permissionGranted.value = true;
       }
     } catch (e) {

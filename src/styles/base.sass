@@ -1,0 +1,117 @@
+@import "src/styles/config/fonts" 
+@import "src/styles/helpers/anims"    
+@import "src/styles/modal.sass"
+
+:root
+  --sat: env(safe-area-inset-top)
+  --sar: env(safe-area-inset-right)
+  --sab: env(safe-area-inset-bottom)
+  --sal: env(safe-area-inset-left)
+
+*, *:before, *:after 
+  box-sizing: border-box
+  -webkit-tap-highlight-color: transparent 
+  -webkit-overflow-scrolling: touch
+  // +user-select(none)
+
+html 
+  font-family: 'IMFellFrenchCanonRegular', sans-serif
+  font-size: 10px
+  overflow: hidden
+  color: $white
+  +rem-scale()
+  +user-select(none)
+  &.remlock
+    font-size: 10px !important
+
+svg
+  overflow: visible
+
+a
+  text-decoration: none
+  color: inherit
+
+ul, li
+  margin: 0
+  padding: 0
+  list-style: none
+
+h1, h2, h3, h4, p
+  margin: 0
+  font-weight: normal  
+  font-size: 2rem
+  letter-spacing: 0.2rem
+  line-height: 1.2
+  font-family: "Koulen", sans-serif
+
+  +breakpoint(mobile)
+    letter-spacing: 0.15rem
+
+h3
+  font-size: 1.4rem
+  letter-spacing: 0.2rem
+
+  &.light
+    font-weight: 100
+
+  &.bold
+    font-weight: 700
+
+button, input
+  border: none
+  outline: none
+  appearance: none
+  font-size: 1rem
+  padding: 0
+  +user-select(none)
+
+
+button
+  cursor: pointer
+  -webkit-tap-highlight-color: transparent
+  background: none 
+  border: none
+  outline: none
+
+#__nuxt
+  position: relative
+  width: 100%
+  height: 100%
+ 
+.title
+  font-size: 6rem 
+  line-height: 6.4rem
+  text-align: right
+  letter-spacing: 0.9rem
+  margin-bottom: -1.2rem
+
+  &.small 
+    font-size: 4.5rem
+    line-height: 1.2
+    letter-spacing: 0.6rem
+
+.layout-btn-wrap 
+  +mainGrid() 
+  position: absolute
+  bottom: 0
+  width: 100vw
+
+.page
+  +mainGrid() 
+  height: 100%
+
+.hidden
+  opacity: 0
+
+:root
+  --visible-height: 100vh
+  --header-height: 8rem
+  --footer-height: 6.1rem 
+  --grid-max-width: 1366px
+  --grid-columns: 16   
+  --grid-column-width: calc((var(--grid-width) - var(--grid-column-gap) * (var(--grid-columns) - 1)) / var(--grid-columns))
+  --section-padding: 100rem 
+  --grid-column-gap: 0rem
+  --grid-side-margin: 0.2rem
+  --grid-width: calc(var(--grid-max-width) - var(--grid-side-margin))
+ 

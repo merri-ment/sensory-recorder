@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "gyro-graph",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,10 +12,14 @@
   "devDependencies": {
     "@capacitor/cli": "^5.6.0",
     "nuxt": "^3.9.0",
+    "sass": "^1.69.7",
+    "vite-plugin-glsl": "^1.2.1",
+    "vite-svg-loader": "^5.1.0",
     "vue": "^3.4.6",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "gsap": "file:src/libs/gsap-shockingly-green/npm-install-this/gsap-bonus.tgz",
     "@capacitor/core": "^5.6.0",
     "@capacitor/ios": "^5.6.0",
     "@capacitor/motion": "^5.0.6",

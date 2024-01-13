@@ -1,0 +1,46 @@
+$site-scale: 1
+$breakpoints: (mobile: (width: 390, design-width: 390, design-height: 844, scale-min: 0.5, scale-max: 1, mode: fit), tablet: (width: 541, design-width: 768, design-height: 1024, scale-min: 0.5, scale-max: 1, mode: fit), desktop: (width: 1025, design-width: 1366, design-height: 950, scale-min: 0.75, scale-max: 1, mode: fit))
+
+  
+// ****************************
+// FONT
+// **************************** 
+
+
+// ****************************
+// COLORS
+// **************************** 
+ 
+ 
+$white: #ffffff
+$pink: #FF62B7
+
+
+// ****************************
+// BREAKPOINTS
+// **************************** 
+
+$bp-x-small: 480px
+$bp-small: 768px
+$bp-medium: 1100px
+$bp-tablet-landscape: $bp-medium
+$bp-tablet-portrait: 1024px //$bp-small
+$bp-desktop: 1366px
+$bp-large: 1510px
+
+
+
+
+// ****************************
+// EXPORTS
+// ****************************
+:export
+  site_scale: $site-scale
+  breakpoints: map-keys($breakpoints)
+  @each $key, $val in $breakpoints
+    breakpoint_#{$key}_width: map-get(($val), width)
+    breakpoint_#{$key}_design_width: map-get(($val), design-width)
+    breakpoint_#{$key}_design_height: map-get(($val), design-height)
+    breakpoint_#{$key}_scale_min: map-get(($val), scale-min)
+    breakpoint_#{$key}_scale_max: map-get(($val), scale-max)
+    breakpoint_#{$key}_mode: map-get(($val), mode)

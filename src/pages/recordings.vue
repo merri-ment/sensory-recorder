@@ -13,6 +13,7 @@ const leave = (el, done) => {
 <template>
   <Transition @enter="enter" @leave="leave" appear :css="false">
     <main class="recordings">
+      <NuxtLink class="home" to="/">Home</NuxtLink>
       <ul>
         <li v-for="(recording, index) in recordings" :key="index">
           <h2>{{ recording.title }}</h2>
@@ -31,5 +32,10 @@ const leave = (el, done) => {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  .home {
+    top: 100px;
+    left: 10px;
+  }
 }
 </style>
