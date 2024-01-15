@@ -10,7 +10,9 @@ const {
   alpha,
   beta,
   gamma,
+  title,
 } = useDeviceMotion();
+const { startTimer, stopTimer, formattedTime } = useTimer();
 
 const router = useRouter();
 const state = ref(HOME_STATE.UNSET);
@@ -24,14 +26,20 @@ const leave = (el, done) => {
   done();
 };
 
+const onGoClick = () => {
+  state.value = HOME_STATE.ASSIGN_LABEL;
+};
+
 const onRecordClick = async () => {
   await requestPermission();
   await startRecording();
-  state.value = HOME_STATE.ASSIGN_LABEL;
+  startTimer();
+  state.value = HOME_STATE.RECORDING;
 };
 
 const onStopRecordClick = () => {
   stopRecording();
+  stopTimer();
   router.push("recordings");
 };
 </script>
@@ -50,11 +58,24 @@ const onStopRecordClick = () => {
           <br />
           Data Label
         </AppTitle>
+
+        <div class="recording" v-if="state === HOME_STATE.RECORDING">
+          <AppTitle :small="true" v-html="title" />
+          <UiDataPanel
+            class="data-panel"
+            :acceleration="acceleration"
+            :alpha="alpha"
+            :gamma="gamma"
+            :beta="beta"
+          />
+        </div>
       </div>
 
       <IconsLogo v-if="state === HOME_STATE.LANDING" />
-
       <UiDropdown v-if="state === HOME_STATE.ASSIGN_LABEL" />
+      <h2 v-if="state === HOME_STATE.RECORDING" class="timer">
+        {{ formattedTime }}
+      </h2>
 
       <p class="assign-label-desc" v-if="state === HOME_STATE.ASSIGN_LABEL">
         Before we start,
@@ -63,26 +84,14 @@ const onStopRecordClick = () => {
         sensors.
       </p>
 
-      <div class="data" v-if="state === HOME_STATE.RECORDING">
-        <div>
-          <p>x {{ acceleration.x }}</p>
-          <p>y {{ acceleration.y }}</p>
-          <p>z {{ acceleration.z }}</p>
-        </div>
-        <div>
-          <p>alpha {{ alpha }}</p>
-        </div>
-        <div>
-          <p>beta {{ beta }}</p>
-        </div>
-        <div>
-          <p>gamma {{ gamma }}</p>
-        </div>
-      </div>
-
       <div class="layout-btn-wrap">
         <UiCtaButton
           v-if="state === HOME_STATE.LANDING"
+          @click="onGoClick"
+          :copy="`LETS GO`"
+        />
+        <UiCtaButton
+          v-if="state === HOME_STATE.ASSIGN_LABEL"
           @click="onRecordClick"
           :copy="`RECORD`"
         />
@@ -109,11 +118,23 @@ main
     grid-column: 3/12
     position: absolute
     align-self: center
-    margin-top: 35rem
+    margin-top: 18rem
 
   .title
     grid-column: 2/16
     margin-right: -1rem
+
+  .timer
+    grid-column: 2/12
+    text-align: left
+    align-self: flex-end
+    justify-self: flex-start
+    margin-bottom: 2rem
+    color: $white
+    line-height: 14.5rem
+    height: 14rem
+    font-size: 4.5rem
+    letter-spacing: 0.6rem
 
   .top
     +mainGrid
@@ -121,6 +142,16 @@ main
     width: 100%
     height: 22rem
     align-items: end
+
+    .recording
+      grid-column: 2/16
+      position: relative
+
+      .data-panel
+        position: absolute
+        top: 0
+
+
 
 .start
   position: absolute

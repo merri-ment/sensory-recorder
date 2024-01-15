@@ -4,7 +4,9 @@ export const useDeviceMotion = function () {
   let accelHandler;
 
   const { appStore } = useStores();
-
+  const title = computed(
+    () => `session <br/> ${NumberToWord(appStore.sessions.length)}`
+  );
   const acceleration = reactive({ x: 0, y: 0, z: 0 });
   const alpha = ref(0);
   const beta = ref(0);
@@ -29,38 +31,40 @@ export const useDeviceMotion = function () {
     }
   };
 
+  const update = (event) => {
+    if (isRecording.value) {
+      const {
+        interval,
+        acceleration: inAcceleration,
+        accelerationIncludingGravity,
+        rotationRate,
+      } = event;
+      const { x, y, z } = inAcceleration;
+
+      acceleration.x = TruncateNumber(x, 3);
+      acceleration.y = TruncateNumber(y, 3);
+      acceleration.z = TruncateNumber(z, 3);
+
+      alpha.value = TruncateNumber(rotationRate.alpha, 3);
+      beta.value = TruncateNumber(rotationRate.beta, 3);
+      gamma.value = TruncateNumber(rotationRate.gamma, 3);
+
+      recordedData.value.push({
+        interval,
+        x: acceleration.x,
+        y: acceleration.y,
+        z: acceleration.z,
+        alpha: alpha.value,
+        beta: beta.value,
+        gamma: gamma.value,
+      });
+    }
+  };
+
   const startRecording = async () => {
     isRecording.value = true;
     recordedData.value = [];
-    accelHandler = await Motion.addListener("accel", (event) => {
-      if (isRecording.value) {
-        const {
-          interval,
-          acceleration: inAcceleration,
-          accelerationIncludingGravity,
-          rotationRate,
-        } = event;
-        const { x, y, z } = inAcceleration;
-
-        acceleration.x = x;
-        acceleration.y = y;
-        acceleration.z = z;
-
-        alpha.value = rotationRate.alpha;
-        beta.value = rotationRate.beta;
-        gamma.value = rotationRate.gamma;
-
-        recordedData.value.push({
-          interval,
-          x,
-          y,
-          z,
-          alpha: alpha.value,
-          beta: beta.value,
-          gamma: gamma.value,
-        });
-      }
-    });
+    accelHandler = await Motion.addListener("accel", update);
   };
 
   const stopRecording = () => {
@@ -68,10 +72,10 @@ export const useDeviceMotion = function () {
       isRecording.value = false;
       Motion.removeAllListeners();
 
-      const len = appStore.recordings.length;
-      appStore.recordings.push({
+      const len = appStore.sessions.length;
+      appStore.sessions.push({
         id: len,
-        title: `Session ${len}`,
+        title: title.value,
         data: recordedData.value,
       });
       if (accelHandler) {
@@ -96,6 +100,7 @@ export const useDeviceMotion = function () {
     alpha,
     beta,
     gamma,
+    title,
   };
 };
 

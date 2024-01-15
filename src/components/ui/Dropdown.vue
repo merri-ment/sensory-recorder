@@ -1,22 +1,18 @@
 <template>
   <div class="ui-dropdown">
-    <div class="dropdown" v-if="!creatingItem">
-      <select
-        v-if="!creatingItem"
-        v-model="selectedItem"
-        @change="handleChange"
-      >
+    <div class="dropdown" v-if="!creatingItem && items.length > 0">
+      <select v-model="selectedItem" @change="handleChange">
         <option v-for="(item, index) in items" :key="index" :value="item">
           {{ item }}
         </option>
         <option value="__create__">Create List Item</option>
       </select>
-      <div class="dropdown-btn">
+      <button>
         <IconsDownArrow />
-      </div>
+      </button>
     </div>
 
-    <div class="create" v-if="creatingItem">
+    <div class="create" v-if="creatingItem || items.length === 0">
       <input v-model="newItemLabel" placeholder="Create Label" />
       <button @click="addItem">Add</button>
     </div>
@@ -26,7 +22,7 @@
 <script setup>
 import { ref } from "vue";
 
-const items = ref(["Option One", "Option Two", "Option Three"]);
+const items = ref([]);
 const selectedItem = ref(null);
 const creatingItem = ref(false);
 const newItemLabel = ref("");
@@ -58,40 +54,35 @@ const addItem = () => {
   grid-column: 3/16
   align-self: center
   position: relative
+  margin-bottom: 10rem
 
-  .dropdown
+  button
+    width: 23%
+    background: $pink
+    height: 100%
+    position: absolute
+    right: 0
+    top: 0
+    content: ''
+    display: flex
+    align-items: center
+    justify-content: center
+    font-family: "Koulen", sans-serif
+    font-size: 2rem
+    letter-spacing: 0.07em
 
-    .dropdown-btn
-      width: 23%
-      background: $pink
-      height: 100%
-      position: absolute
-      right: 0
-      top: 0
-      content: ''
-      display: flex
-      align-items: center
-      justify-content: center
+  .dropdown button
+    pointer-events: none
 
-      .arrow
-        padding: 10px
-        background-color: #3498db
-        color: #fff
-        border: none
-        cursor: pointer
-        position: relative
-        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAiklEQVR42mJ8fPHgoKADAwMT/A4XXPZ5gkCgwGhGKnCkEoQQUwGKwo+qVgzFMPQgA5wMslMZUohCpQwMVEFk5C6QMDAysEBGExAECA2eQkMyaGWGAAAAAElFTkSuQmCC') no-repeat right center
-        background-size: 10px
-
-    select
-      width: 100%
-      height: 5rem
-      border: none
-      border-radius: 0
-      background: white
-      color: $pink
-      font-family: "Koulen", sans-serif
-      padding: 0 2rem
-      font-size: 2rem
-      letter-spacing: 0.07em
+  select, input
+    width: 100%
+    height: 5rem
+    border: none
+    border-radius: 0
+    background: white
+    color: $pink
+    font-family: "Koulen", sans-serif
+    padding: 0 2rem
+    font-size: 2rem
+    letter-spacing: 0.07em
 </style>
