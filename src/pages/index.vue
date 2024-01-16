@@ -109,7 +109,7 @@ const onStopRecordClick = () => {
 @import "@/styles/shared.sass"
 
 main
-  background: linear-gradient(180deg, #62d9ff 0%, #90e4ff 100%)
+  background: $blueGradient
   position: absolute
   width: 100vw
   height: 100vh

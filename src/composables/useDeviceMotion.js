@@ -50,13 +50,13 @@ export const useDeviceMotion = function () {
       gamma.value = TruncateNumber(rotationRate.gamma, 3);
 
       recordedData.value.push({
-        interval,
+        i: interval,
         x: acceleration.x,
         y: acceleration.y,
         z: acceleration.z,
-        alpha: alpha.value,
-        beta: beta.value,
-        gamma: gamma.value,
+        a: alpha.value,
+        b: beta.value,
+        g: gamma.value,
       });
     }
   };
