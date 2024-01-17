@@ -14,8 +14,11 @@ const {
   title,
 } = useDeviceMotion();
 
+const { appStore } = useStores();
 const router = useRouter();
 const state = ref(HOME_STATE.UNSET);
+
+const { labels } = toRefs(appStore);
 
 const formattedTime = computed(() => {
   return FormatTime(time.value);
@@ -43,6 +46,10 @@ const onRecordClick = async () => {
 const onStopRecordClick = () => {
   stopRecording();
   router.push("recordings");
+};
+
+const onAdded = (value) => {
+  appStore.labels.push(value);
 };
 </script>
 
@@ -74,7 +81,11 @@ const onStopRecordClick = () => {
       </div>
 
       <IconsLogo v-if="state === HOME_STATE.LANDING" />
-      <UiDropdown v-if="state === HOME_STATE.ASSIGN_LABEL" />
+      <UiDropdown
+        v-if="state === HOME_STATE.ASSIGN_LABEL"
+        @added="onAdded"
+        :labels="labels"
+      />
       <h2 v-if="state === HOME_STATE.RECORDING" class="timer">
         {{ formattedTime }}
       </h2>

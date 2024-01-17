@@ -1,9 +1,9 @@
 <template>
   <div class="ui-dropdown">
-    <div class="dropdown" v-if="!creatingItem && items.length > 0">
+    <div class="dropdown" v-if="!creatingItem && labels.length > 0">
       <select v-model="selectedItem" @change="handleChange">
-        <option v-for="(item, index) in items" :key="index" :value="item">
-          {{ item }}
+        <option v-for="(label, index) in labels" :key="index" :value="label">
+          {{ label }}
         </option>
         <option value="__create__">Create List Item</option>
       </select>
@@ -12,7 +12,7 @@
       </button>
     </div>
 
-    <div class="create" v-if="creatingItem || items.length === 0">
+    <div class="create" v-if="creatingItem || labels.length === 0">
       <input v-model="newItemLabel" placeholder="Create Label" />
       <button @click="addItem">Add</button>
     </div>
@@ -20,10 +20,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+const emit = defineEmits(["added"]);
+const props = defineProps({
+  labels: {
+    default: () => [],
+    type: Array,
+  },
+  selectedLabel: {
+    default: "",
+    type: String,
+  },
+});
 
-const items = ref([]);
-const selectedItem = ref(null);
+const { labels } = toRefs(props);
+const selectedItem = ref(props.selectedLabel || labels.value[0]);
 const creatingItem = ref(false);
 const newItemLabel = ref("");
 
@@ -39,7 +49,7 @@ const handleChange = () => {
 const addItem = () => {
   if (newItemLabel.value.trim() !== "") {
     // Add the new item to your list
-    items.value.push(newItemLabel.value);
+    labels.value.push(newItemLabel.value);
     // Reset state
     selectedItem.value = newItemLabel.value;
     creatingItem.value = false;

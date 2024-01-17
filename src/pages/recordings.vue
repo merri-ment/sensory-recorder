@@ -27,7 +27,7 @@ const onDownload = () => {
       <ul>
         <li v-for="(session, index) in sessions" :key="index">
           <NuxtLink :to="`/session/${session.id}`">
-            <h2>{{ session.title }} - {{ FormatTime(session.time) }}</h2>
+            <h2>{{ session.label }} - {{ FormatTime(session.time) }}</h2>
             <UiCloseButton />
           </NuxtLink>
         </li>

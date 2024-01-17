@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { MODAL_STATES } from "@/config/app";
+import { MODAL_STATES, LABELS } from "@/config/app";
 
 const dummyData = [
   { i: 0, x: 0, y: 0, z: 0, a: 0, b: 0, g: 0 },
@@ -61,76 +61,77 @@ export const useAppStore = defineStore({
   state: () => {
     return {
       modalState: MODAL_STATES.NONE,
+      labels: [...LABELS],
       sessions: [
         {
           id: 0,
           title: "session one",
-          label: "running",
+          label: LABELS[0],
           data: dummyData,
-          time: 12.0,
+          time: 87.0,
         },
         {
           id: 1,
           title: "session two",
-          label: "running",
+          label: LABELS[1],
           data: dummyData,
-          time: 12.0,
+          time: 7.0,
         },
         {
           id: 2,
           title: "session three",
-          label: "running",
+          label: LABELS[2],
           data: dummyData,
           time: 12.0,
         },
         {
           id: 3,
           title: "session four",
-          label: "running",
+          label: LABELS[3],
           data: dummyData,
-          time: 12.0,
+          time: 24.0,
         },
         {
           id: 4,
           title: "session five",
-          label: "running",
+          label: LABELS[2],
           data: dummyData,
-          time: 12.0,
+          time: 11.0,
         },
         {
           id: 5,
           title: "session six",
-          label: "running",
+          label: LABELS[0],
           data: dummyData,
-          time: 12.0,
+          time: 10.0,
         },
         {
           id: 2,
           title: "session seven",
-          label: "running",
+          label: LABELS[3],
           data: dummyData,
-          time: 12.0,
+          time: 5.0,
         },
         {
           id: 3,
           title: "session eight",
-          label: "running",
+          label: LABELS[0],
           data: dummyData,
-          time: 12.0,
+          time: 21.0,
         },
         {
           id: 4,
           title: "session nine",
-          label: "running",
+          label: LABELS[1],
           data: dummyData,
-          time: 12.0,
+          time: 30.0,
         },
         {
           id: 5,
           title: "session ten",
-          label: "running",
+          label: LABELS[1],
           data: dummyData,
-          time: 12.0,
+          time: 2.0,
         },
       ],
     };

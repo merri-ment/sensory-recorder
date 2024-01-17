@@ -31,3 +31,5 @@ export const MODAL_STATES = {
   MENU: "MODAL_STATE:MENU",
   LOADING: "MODAL_STATE:LOADING",
 };
+
+export const LABELS = ["Walking", "Running", "Zig Zag", "Sitting", "Skipping"];
