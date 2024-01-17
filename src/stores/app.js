@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import { MODAL_STATES } from "@/config/app";
 
 const dummyData = [
   { i: 0, x: 0, y: 0, z: 0, a: 0, b: 0, g: 0 },
@@ -59,66 +60,77 @@ export const useAppStore = defineStore({
   id: "app",
   state: () => {
     return {
+      modalState: MODAL_STATES.NONE,
       sessions: [
         {
           id: 0,
           title: "session one",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
         {
           id: 1,
           title: "session two",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
         {
           id: 2,
           title: "session three",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
         {
           id: 3,
-          title: "session one",
+          title: "session four",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
         {
           id: 4,
-          title: "session two",
+          title: "session five",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
         {
           id: 5,
-          title: "session three",
+          title: "session six",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
         {
           id: 2,
-          title: "session three",
+          title: "session seven",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
         {
           id: 3,
-          title: "session one",
+          title: "session eight",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
         {
           id: 4,
-          title: "session two",
+          title: "session nine",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
         {
           id: 5,
-          title: "session three",
+          title: "session ten",
           label: "running",
           data: dummyData,
+          time: 12.0,
         },
       ],
     };
@@ -141,6 +153,7 @@ export const useAppStore = defineStore({
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
       link.setAttribute("download", "recorded_data.csv");
+
       document.body.appendChild(link);
       link.click();
     },

@@ -11,6 +11,7 @@ export const useDeviceMotion = function () {
   const alpha = ref(0);
   const beta = ref(0);
   const gamma = ref(0);
+  const time = ref(0);
 
   const recordedData = ref([]);
   const isRecording = ref(false);
@@ -45,6 +46,8 @@ export const useDeviceMotion = function () {
       acceleration.y = TruncateNumber(y, 3);
       acceleration.z = TruncateNumber(z, 3);
 
+      time.value += interval;
+
       alpha.value = TruncateNumber(rotationRate.alpha, 3);
       beta.value = TruncateNumber(rotationRate.beta, 3);
       gamma.value = TruncateNumber(rotationRate.gamma, 3);
@@ -76,6 +79,7 @@ export const useDeviceMotion = function () {
       appStore.sessions.push({
         id: len,
         title: title.value,
+        time: time.value,
         data: recordedData.value,
       });
       if (accelHandler) {
@@ -101,6 +105,7 @@ export const useDeviceMotion = function () {
     beta,
     gamma,
     title,
+    time,
   };
 };
 

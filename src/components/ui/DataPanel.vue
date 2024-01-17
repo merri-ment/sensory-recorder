@@ -39,8 +39,9 @@ const props = defineProps({
 
 .ui-data-panel
   grid-column: 2/10
+  opacity: 0.5
 
   p
-    line-height: 2.2
+    line-height: 1.8
     margin-top: 0
 </style>

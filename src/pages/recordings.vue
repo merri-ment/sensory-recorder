@@ -4,7 +4,6 @@ const { sessions } = toRefs(appStore);
 
 const enter = (el, done) => {
   done();
-  console.log(appStore);
 };
 const leave = (el, done) => {
   done();
@@ -18,7 +17,6 @@ const onDownload = () => {
 <template>
   <Transition @enter="enter" @leave="leave" appear :css="false">
     <main class="recordings page">
-      <NuxtLink class="home" to="/">Home</NuxtLink>
       <div class="top">
         <AppTitle :small="true" class="title">
           your
@@ -28,7 +26,8 @@ const onDownload = () => {
       </div>
       <ul>
         <li v-for="(session, index) in sessions" :key="index">
-          <h2>{{ session.title }} - {{ session.time }}</h2>
+          <h2>{{ session.title }} - {{ FormatTime(session.time) }}</h2>
+          <UiCloseButton />
         </li>
       </ul>
       <UiCtaButton class="btn" :copy="`Download dataset`" @click="onDownload" />
@@ -43,8 +42,17 @@ main
   position: absolute
   width: 100vw
   height: 100vh
-  overflow: hidden
+  overflow: scroll
   background-color: $pink
+
+  &::before
+    position: fixed
+    content: " "
+    bottom: 0
+    width: 100%
+    height: 20rem
+    z-index: 1
+    background: linear-gradient(to bottom,  rgba(255, 98, 183,0) 0%,rgba(255, 98, 183,1) 100%)
 
   .top
     +mainGrid
@@ -55,21 +63,9 @@ main
     top: 0
 
   ul
-    grid-column: 3/15
+    grid-column: 4/16
     margin-top: 26rem
-    height: calc(100vh - 26rem)
-    overflow: scroll
     padding: 0 0 20rem
-
-    &::before
-      position: absolute
-      content: " "
-      bottom: 0
-      width: 100%
-      height: 15rem
-      z-index: 1
-      background: linear-gradient(to bottom,  rgba(255, 98, 183,0) 0%,rgba(255, 98, 183,1) 100%)
-
 
     li
       height: 5rem
@@ -78,13 +74,18 @@ main
       display: flex
       margin-bottom: 1rem
       align-items: center
-      padding: 0 2rem
+      padding: 0.2rem 1.5rem 0
+      justify-content: space-between
+
+      h2
+        font-size: 1.8rem
+
 
   .btn
     background: white
-    color: #FF62B7
+    color: $pink
     align-self: flex-end
-    position: absolute
+    position: fixed
     z-index: 1
 
     :deep(h2)

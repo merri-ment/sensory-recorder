@@ -10,12 +10,16 @@ const {
   alpha,
   beta,
   gamma,
+  time,
   title,
 } = useDeviceMotion();
-const { startTimer, stopTimer, formattedTime } = useTimer();
 
 const router = useRouter();
 const state = ref(HOME_STATE.UNSET);
+
+const formattedTime = computed(() => {
+  return FormatTime(time.value);
+});
 
 const enter = (el, done) => {
   state.value = HOME_STATE.LANDING;
@@ -33,13 +37,11 @@ const onGoClick = () => {
 const onRecordClick = async () => {
   await requestPermission();
   await startRecording();
-  startTimer();
   state.value = HOME_STATE.RECORDING;
 };
 
 const onStopRecordClick = () => {
   stopRecording();
-  stopTimer();
   router.push("recordings");
 };
 </script>

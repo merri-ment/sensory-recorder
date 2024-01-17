@@ -1,6 +1,8 @@
 <template>
   <div>
     <NuxtPage />
+    <ModalMenu />
+    <AppHeader />
   </div>
 </template>
 
