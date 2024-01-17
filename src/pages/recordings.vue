@@ -26,8 +26,10 @@ const onDownload = () => {
       </div>
       <ul>
         <li v-for="(session, index) in sessions" :key="index">
-          <h2>{{ session.title }} - {{ FormatTime(session.time) }}</h2>
-          <UiCloseButton />
+          <NuxtLink :to="`/session/${session.id}`">
+            <h2>{{ session.title }} - {{ FormatTime(session.time) }}</h2>
+            <UiCloseButton />
+          </NuxtLink>
         </li>
       </ul>
       <UiCtaButton class="btn" :copy="`Download dataset`" @click="onDownload" />
@@ -71,11 +73,15 @@ main
       height: 5rem
       width: 100%
       background: $blue
-      display: flex
       margin-bottom: 1rem
-      align-items: center
-      padding: 0.2rem 1.5rem 0
-      justify-content: space-between
+
+      a
+        height: 100%
+        width: 100%
+        display: flex
+        align-items: center
+        padding: 0 1.5rem
+        justify-content: space-between
 
       h2
         font-size: 1.8rem

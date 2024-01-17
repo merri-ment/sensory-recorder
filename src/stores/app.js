@@ -157,6 +157,10 @@ export const useAppStore = defineStore({
       document.body.appendChild(link);
       link.click();
     },
+
+    getSessionById(id) {
+      return this.sessions.find((session) => session.id === id);
+    },
   },
   getters: {},
 });
