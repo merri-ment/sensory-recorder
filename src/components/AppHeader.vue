@@ -45,6 +45,7 @@ const showHamburger = computed(() => {
 
     h2
       position: relative
+      display: inline
 
       &::after
         width: 100%
@@ -52,5 +53,6 @@ const showHamburger = computed(() => {
         content: ''
         background: white
         position: absolute
-        bottom: 3rem
+        bottom: 0
+        left: 0
 </style>

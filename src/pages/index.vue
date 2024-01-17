@@ -122,7 +122,7 @@ const onAdded = (value) => {
 @import "@/styles/shared.sass"
 
 main
-  background: $blueGradient
+  // background: $blueGradient
   position: absolute
   width: 100vw
   height: 100vh

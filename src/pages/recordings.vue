@@ -45,7 +45,7 @@ main
   width: 100vw
   height: 100vh
   overflow: scroll
-  background-color: $pink
+  // background-color: $pink
 
   &::before
     position: fixed

@@ -1,11 +1,6 @@
 <template>
   <Transition @enter="enter" @leave="leave" appear :css="false">
-    <div
-      ref="rootRef"
-      @pointerdown="onPointerDown"
-      @pointerup="onPointerUp"
-      class="menu-hamburger"
-    >
+    <div ref="rootRef" @click="onClick" class="menu-hamburger">
       <div class="inner" ref="innerRef">
         <div class="hamburger-line" ref="topRef"></div>
         <div class="hamburger-line" ref="centerRef"></div>
@@ -27,7 +22,7 @@ const centerRef = ref(null);
 const bottomRef = ref(null);
 const innerRef = ref(null);
 
-let click = () => {
+const onClick = () => {
   /*  $appStore.modal_state =
     modalState.value === MODAL_STATES.MENU
       ? MODAL_STATES.NONE

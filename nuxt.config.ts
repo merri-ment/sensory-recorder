@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   ssr: false,
   srcDir: "src/",
 
-  modules: ["@vueuse/nuxt", "@pinia/nuxt"],
+  modules: ["@vueuse/nuxt", "@pinia/nuxt", "@tresjs/nuxt"],
 
   vite: {
     css: {

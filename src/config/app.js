@@ -13,23 +13,28 @@ export const HOME_STATE = {
 };
 
 export const PAGES = {
-  ABOUT: "about",
-  CONTACT: "contact",
   HOME: "index",
-  PROJECTS: "projects",
-  PROJECT: "project-slug",
-  PROJECT_DAZED: "dazed-lens",
-  PROJECT_VASOLINE: "vasoline-lens",
-  PROJECT_GHOST: "ghost-lens",
-  PROJECT_SLIT: "slit-lens",
-  PROJECT_DITHER: "pixl-pact",
-  PROJECT_SCRAPPYCHEF: "scrappy-chef",
+  RECORDINGS: "recordings",
+  SESSION: "session",
+  ABOUT: "about",
 };
 
 export const MODAL_STATES = {
   NONE: "NONE",
   MENU: "MODAL_STATE:MENU",
   LOADING: "MODAL_STATE:LOADING",
+};
+
+export const EVENTS = {
+  STAGE: {
+    TRANSITION: "STAGE:TRANSITION",
+    RENDER: "STAGE:RENDER",
+  },
+};
+
+export const COLORS = {
+  PINK: "#ff62b7",
+  BLUE: "#62d9ff",
 };
 
 export const LABELS = ["Walking", "Running", "Zig Zag", "Sitting", "Skipping"];

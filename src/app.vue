@@ -1,5 +1,8 @@
+<script setup></script>
+
 <template>
   <div>
+    <WebGL />
     <NuxtPage />
     <ModalMenu />
     <AppHeader />

@@ -19,11 +19,13 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "gsap": "file:src/libs/gsap-shockingly-green/npm-install-this/gsap-bonus.tgz",
     "@capacitor/core": "^5.6.0",
     "@capacitor/ios": "^5.6.0",
     "@capacitor/motion": "^5.0.6",
     "@pinia/nuxt": "^0.5.1",
-    "@vueuse/nuxt": "^10.7.1"
+    "@tresjs/nuxt": "^2.0.1",
+    "@vueuse/nuxt": "^10.7.1",
+    "gsap": "file:src/libs/gsap-shockingly-green/npm-install-this/gsap-bonus.tgz",
+    "three": "^0.160.0"
   }
 }

@@ -1,5 +1,5 @@
 <script setup>
-import { MODAL_STATES } from "~/config/app";
+import { MODAL_STATES } from "@/config/app";
 
 const { appStore } = useStores();
 const { modalState } = toRefs(appStore);
@@ -19,8 +19,8 @@ watch(modalState, (val) => {
 @import "@/styles/shared.sass"
 
 .modal-menu
-  height: 100%
-  width: 100%
+  height: 100vh
+  width: 100vw
   top: 0
   position: fixed
   +mainGrid()
