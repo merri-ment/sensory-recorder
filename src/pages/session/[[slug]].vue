@@ -5,7 +5,11 @@
         <AppTitle class="title" :small="true" v-html="data.title" />
       </div>
       <div class="content">
-        <UiDropdown :selectedLabel="data.label" :labels="labels" />
+        <UiDropdown
+          :selectedLabel="data.label"
+          :labels="labels"
+          class="dropdown"
+        />
         <UiDataPanel
           class="data-panel"
           :acceleration="acceleration"
@@ -31,7 +35,7 @@ const { labels } = toRefs(appStore);
 
 const id = computed(() => route.params.slug);
 const data = computed(() => appStore.getSessionById(Number(id.value)));
-const formattedTime = computed(() => FormatTime(12));
+const formattedTime = computed(() => FormatTime(data.value.time));
 
 const enter = (el, done) => {
   done();
@@ -49,6 +53,10 @@ onBeforeUnmount(() => {});
   position: absolute
   width: 100vw
   height: 100vh
+  pointer-events: none
+
+  .dropdown
+    pointer-events: auto
 
   .top
     +mainGrid

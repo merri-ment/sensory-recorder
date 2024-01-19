@@ -12,6 +12,7 @@ const {
   gamma,
   time,
   title,
+  label,
 } = useDeviceMotion();
 
 const { appStore } = useStores();
@@ -19,6 +20,7 @@ const router = useRouter();
 const state = ref(HOME_STATE.UNSET);
 
 const { labels } = toRefs(appStore);
+label.value = labels.value[0];
 
 const formattedTime = computed(() => {
   return FormatTime(time.value);
@@ -48,8 +50,13 @@ const onStopRecordClick = () => {
   router.push("recordings");
 };
 
-const onAdded = (value) => {
+const onLabelAdded = (value) => {
   appStore.labels.push(value);
+  label.value = value;
+};
+
+const onLabelChange = (value) => {
+  label.value = value;
 };
 </script>
 
@@ -83,7 +90,9 @@ const onAdded = (value) => {
       <IconsLogo v-if="state === HOME_STATE.LANDING" />
       <UiDropdown
         v-if="state === HOME_STATE.ASSIGN_LABEL"
-        @added="onAdded"
+        @added="onLabelAdded"
+        @selected="onLabelChange"
+        :selectedLabel="labels[0]"
         :labels="labels"
       />
       <h2 v-if="state === HOME_STATE.RECORDING" class="timer">

@@ -23,10 +23,8 @@ const bottomRef = ref(null);
 const innerRef = ref(null);
 
 const onClick = () => {
-  /*  $appStore.modal_state =
-    modalState.value === MODAL_STATES.MENU
-      ? MODAL_STATES.NONE
-      : MODAL_STATES.MENU; */
+  const { MENU, NONE } = MODAL_STATES;
+  appStore.modalState = modalState.value === MENU ? NONE : MENU;
 };
 
 let enter = (el, done) => {

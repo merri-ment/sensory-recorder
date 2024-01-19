@@ -62,8 +62,9 @@ export const useAppStore = defineStore({
     return {
       modalState: MODAL_STATES.NONE,
       labels: [...LABELS],
+      session: {},
       sessions: [
-        {
+        /*  {
           id: 0,
           title: "session one",
           label: LABELS[0],
@@ -132,15 +133,13 @@ export const useAppStore = defineStore({
           label: LABELS[1],
           data: dummyData,
           time: 2.0,
-        },
+        }, */
       ],
     };
   },
   actions: {
     exportToCSV() {
-      let csvContent =
-        "data:text/csv;charset=utf-8," +
-        "Timestamp,X,Y,Z,Alpha,Beta,Gamma,Label\n";
+      let csvContent = "Timestamp,X,Y,Z,Alpha,Beta,Gamma,Label\n";
 
       this.sessions.forEach((session) => {
         session.data.forEach((val) => {
@@ -150,13 +149,24 @@ export const useAppStore = defineStore({
         });
       });
 
-      const encodedUri = encodeURI(csvContent);
-      const link = document.createElement("a");
-      link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "recorded_data.csv");
+      const blob = new Blob([csvContent], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
 
-      document.body.appendChild(link);
-      link.click();
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "recorded_data.csv";
+
+      // Triggering a click event programmatically
+      const clickEvent = new MouseEvent("click", {
+        bubbles: true,
+        cancelable: false,
+        view: window,
+      });
+
+      a.dispatchEvent(clickEvent);
+
+      // Release the object URL
+      URL.revokeObjectURL(url);
     },
 
     getSessionById(id) {

@@ -33,6 +33,7 @@ const showHamburger = computed(() => {
   width: 100%
   top: 0
   position: fixed
+  z-index: 3
   +mainGrid()
 
   .back-btn

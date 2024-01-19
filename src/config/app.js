@@ -15,7 +15,7 @@ export const HOME_STATE = {
 export const PAGES = {
   HOME: "index",
   RECORDINGS: "recordings",
-  SESSION: "session",
+  SESSION: "session-slug",
   ABOUT: "about",
 };
 

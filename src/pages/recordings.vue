@@ -32,7 +32,13 @@ const onDownload = () => {
           </NuxtLink>
         </li>
       </ul>
-      <UiCtaButton class="btn" :copy="`Download dataset`" @click="onDownload" />
+      <div class="bottom">
+        <UiCtaButton
+          class="btn"
+          :copy="`Download dataset`"
+          @click="onDownload"
+        />
+      </div>
     </main>
   </Transition>
 </template>
@@ -45,16 +51,7 @@ main
   width: 100vw
   height: 100vh
   overflow: scroll
-  // background-color: $pink
 
-  &::before
-    position: fixed
-    content: " "
-    bottom: 0
-    width: 100%
-    height: 20rem
-    z-index: 1
-    background: linear-gradient(to bottom,  rgba(255, 98, 183,0) 0%,rgba(255, 98, 183,1) 100%)
 
   .top
     +mainGrid
@@ -91,7 +88,6 @@ main
     background: white
     color: $pink
     align-self: flex-end
-    position: fixed
     z-index: 1
 
     :deep(h2)
@@ -102,6 +98,17 @@ main
     color: $darkPink
     grid-column: 2/16
     margin-right: -1rem
+
+  .bottom
+    +mainGrid
+    bottom: 0
+    left: 0
+    width: 100%
+    position: fixed
+    height: 20rem
+    z-index: 1
+    background: linear-gradient(to bottom,  rgba(255, 98, 183,0) 0%,rgba(255, 98, 183,1) 100%)
+
 
   .home
     top: 100px

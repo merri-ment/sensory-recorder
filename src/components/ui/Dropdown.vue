@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-const emit = defineEmits(["added"]);
+const emit = defineEmits(["added", "selected"]);
 const props = defineProps({
   labels: {
     default: () => [],
@@ -33,25 +33,28 @@ const props = defineProps({
 });
 
 const { labels } = toRefs(props);
-const selectedItem = ref(props.selectedLabel || labels.value[0]);
+const selectedItem = ref(props.selectedLabel);
 const creatingItem = ref(false);
 const newItemLabel = ref("");
 
-const handleChange = () => {
+const handleChange = (e) => {
   if (selectedItem.value === "__create__") {
     creatingItem.value = true;
     newItemLabel.value = ""; // Clear input field
   } else {
     creatingItem.value = false;
+    emit("selected", selectedItem.value);
   }
 };
 
 const addItem = () => {
-  if (newItemLabel.value.trim() !== "") {
+  const label = newItemLabel.value.trim();
+  if (label !== "") {
     // Add the new item to your list
-    labels.value.push(newItemLabel.value);
+    // labels.value.push(newItemLabel.value);
+    emit("added", label);
     // Reset state
-    selectedItem.value = newItemLabel.value;
+    selectedItem.value = label;
     creatingItem.value = false;
   }
 };

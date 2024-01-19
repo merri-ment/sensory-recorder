@@ -12,6 +12,7 @@ export const useDeviceMotion = function () {
   const beta = ref(0);
   const gamma = ref(0);
   const time = ref(0);
+  const label = ref("");
 
   const recordedData = ref([]);
   const isRecording = ref(false);
@@ -71,22 +72,21 @@ export const useDeviceMotion = function () {
   };
 
   const stopRecording = () => {
-    if (permissionGranted.value) {
-      isRecording.value = false;
-      Motion.removeAllListeners();
+    isRecording.value = false;
+    Motion.removeAllListeners();
 
-      const len = appStore.sessions.length;
-      appStore.sessions.push({
-        id: len,
-        title: title.value,
-        time: time.value,
-        data: recordedData.value,
-      });
-      if (accelHandler) {
-        accelHandler.remove();
-      }
-    } else {
-      console.warn("Permission not granted : call requestPermission() first");
+    const len = appStore.sessions.length;
+    const session = {
+      id: len,
+      label: label.value,
+      time: time.value,
+      data: recordedData.value,
+    };
+    console.log("!!!!! useDeviceMotion --- ", label.value);
+
+    appStore.sessions.push(session);
+    if (accelHandler) {
+      accelHandler.remove();
     }
   };
 
@@ -105,6 +105,7 @@ export const useDeviceMotion = function () {
     beta,
     gamma,
     title,
+    label,
     time,
   };
 };
