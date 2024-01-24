@@ -1,9 +1,6 @@
 import type { PluginListenerHandle } from "@capacitor/core";
 
 export interface IosSensorsPlugin {
-  start(): Promise<any>;
-  stop(): Promise<any>;
-
   startDeviceMotion(): Promise<any>;
   stopDeviceMotion(): Promise<any>;
 
@@ -131,21 +128,21 @@ export interface ListenerEvent {
    *
    * @since 1.0.0
    */
-  acceleration: Acceleration;
+  accelerometer: Acceleration;
 
   /**
    * An object giving the acceleration of the device on the three axes X, Y, and Z with the effect of gravity. Acceleration is expressed in m/s.
    *
    * @since 1.0.0
    */
-  magneticField: MagneticField;
+  magnetometer: MagneticField;
 
   /**
    * An object giving the rate of change of the device's orientation on the three orientation axes alpha, beta, and gamma. Rotation rate is expressed in degrees per second.
    *
    * @since 1.0.0
    */
-  rotationRate: RotationRate;
+  gyroscope: RotationRate;
 
   /**
    * A number representing the interval of time, in milliseconds, at which data is obtained from the device.
@@ -153,4 +150,11 @@ export interface ListenerEvent {
    * @since 1.0.0
    */
   interval: number;
+
+  /**
+   * A number representing the interval of time, in milliseconds, at which data is obtained from the device.
+   *
+   * @since 1.0.0
+   */
+  elapsedTime: number;
 }

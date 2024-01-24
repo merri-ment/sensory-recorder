@@ -230,12 +230,12 @@ const createPath = (motionData) => {
     positions[i * 3 + 1] = y * scale;
     positions[i * 3 + 2] = z * scale;
 
-    const rotationX = motionData[i].a * rotationFactor;
-    const rotationY = motionData[i].b * rotationFactor;
-    const rotationZ = motionData[i].g * rotationFactor;
+    const rotationX = motionData[i].rx * rotationFactor;
+    const rotationY = motionData[i].ry * rotationFactor;
+    const rotationZ = motionData[i].rz * rotationFactor;
 
     // Apply rotation to the positions
-    // rotatePoint(positions, i * 3, rotationX, rotationY, rotationZ);
+    rotatePoint(positions, i * 3, rotationX, rotationY, rotationZ);
   }
 
   pathGeometry.setAttribute("position", new BufferAttribute(positions, 3));

@@ -1,8 +1,7 @@
-import { Motion } from "@capacitor/motion";
+// import { Motion } from "@capacitor/motion";
+import { IosSensors } from "@/capacitor/plugins/ios-sensors-plugin";
 
 export const useDeviceMotion = function () {
-  let accelHandler;
-
   const { appStore } = useStores();
 
   const title = computed(
@@ -19,18 +18,12 @@ export const useDeviceMotion = function () {
   const isRecording = ref(false);
   const permissionGranted = ref(false);
 
-  const calibrationOffsets = {
-    acceleration: { x: 0, y: 0, z: 0 },
-    magneticField: { x: 0, y: 0, z: 0 },
-  };
-  let isCalibrated = false;
-
   const requestPermission = async () => {
     try {
       if (permissionGranted.value) {
         return true;
       } else {
-        await DeviceMotionEvent.requestPermission();
+        await IosSensors.startDeviceMotion();
         permissionGranted.value = true;
       }
     } catch (e) {
@@ -42,20 +35,22 @@ export const useDeviceMotion = function () {
 
   const update = (event) => {
     if (isRecording.value) {
-      acceleration.x = event.acceleration.x;
-      acceleration.y = event.acceleration.y;
-      acceleration.z = event.acceleration.z;
+      console.log("update");
 
-      magneticField.x = event.magneticField.x;
-      magneticField.y = event.magneticField.y;
-      magneticField.z = event.magneticField.z;
+      acceleration.x = event.accelerometer.x;
+      acceleration.y = event.accelerometer.y;
+      acceleration.z = event.accelerometer.z;
 
-      rotationRate.alpha = event.rotationRate.alpha;
-      rotationRate.beta = event.rotationRate.beta;
-      rotationRate.gamma = event.rotationRate.gamma;
+      magneticField.x = event.magnetometer.x;
+      magneticField.y = event.magnetometer.y;
+      magneticField.z = event.magnetometer.z;
+
+      rotationRate.x = event.gyroscope.x;
+      rotationRate.y = event.gyroscope.y;
+      rotationRate.z = event.gyroscope.z;
 
       // Calibrate data
-      if (!isCalibrated) {
+      /*   if (!isCalibrated) {
         calibrateData({
           acceleration: {
             x: acceleration.x,
@@ -68,7 +63,7 @@ export const useDeviceMotion = function () {
             z: magneticField.z,
           },
         });
-      }
+      } */
 
       /*  
         Apply exponential moving average (EMA) filtering to acceleration data
@@ -79,7 +74,7 @@ export const useDeviceMotion = function () {
         and it helps in achieving a balance between responsiveness and stability in the data.
       */
 
-      const filterAlpha = 0.2; // Adjust as needed
+      /*  const filterAlpha = 0.2; // Adjust as needed
       acceleration.x =
         filterAlpha * (acceleration.x - calibrationOffsets.acceleration.x) +
         (1 - filterAlpha) * acceleration.x;
@@ -90,21 +85,21 @@ export const useDeviceMotion = function () {
         filterAlpha * (acceleration.z - calibrationOffsets.acceleration.z) +
         (1 - filterAlpha) * acceleration.z;
 
-      time.value += interval;
+      time.value += interval; */
 
       // Your logic for using magnetometer data goes here
 
       recordedData.value.push({
-        i: interval,
+        i: event.elapsedTime,
         ax: TruncateNumber(acceleration.x, 3),
         ay: TruncateNumber(acceleration.y, 3),
         az: TruncateNumber(acceleration.z, 3),
         mx: TruncateNumber(magneticField.x, 3),
         my: TruncateNumber(magneticField.y, 3),
         mz: TruncateNumber(magneticField.z, 3),
-        a: alpha.value,
-        b: beta.value,
-        g: gamma.value,
+        rx: TruncateNumber(rotationRate.x, 3),
+        ry: TruncateNumber(rotationRate.y, 3),
+        rz: TruncateNumber(rotationRate.z, 3),
       });
     }
   };
@@ -114,11 +109,13 @@ export const useDeviceMotion = function () {
     recordedData.value = [];
 
     // Perform calibration before starting recording (only once per session)
-    if (!isCalibrated) {
-      await calibrate();
-    }
+    // if (!isCalibrated) {
+    //   await calibrate();
+    // }
 
-    accelHandler = await Motion.addListener("accel", update);
+    IosSensors.addListener("update", update);
+
+    // accelHandler = await Motion.addListener("accel", update);
   };
 
   const stopRecording = () => {
@@ -134,12 +131,13 @@ export const useDeviceMotion = function () {
     };
     console.log(session.data);
     appStore.sessions.unshift(session);
-    if (accelHandler) {
+    /* if (accelHandler) {
       accelHandler.remove();
-    }
+    } */
+    IosSensors.stopDeviceMotion();
   };
 
-  const calibrateData = () => {
+  /*  const calibrateData = () => {
     // Apply calibration logic if needed
     // For example, you can calculate the offsets based on initial readings
     calibrationOffsets.acceleration.x = acceleration.x;
@@ -153,9 +151,9 @@ export const useDeviceMotion = function () {
 
     // Set the calibration flag to true
     isCalibrated = true;
-  };
+  }; */
 
-  const calibrate = async () => {
+  /*  const calibrate = async () => {
     // Collect some initial sensor data for calibration
     const calibrationSamples = [];
     const calibrationDuration = 5000; // 5 seconds
@@ -207,7 +205,7 @@ export const useDeviceMotion = function () {
         });
       });
     });
-  };
+  }; */
 
   /* 
     This function calculates the average value of a given set of sensor readings over a specified duration. 
@@ -215,10 +213,10 @@ export const useDeviceMotion = function () {
     The purpose is to capture a representative baseline value for each axis, 
     which can then be used to compensate for biases in subsequent sensor readings
    */
-  const calculateAverageOffset = (samples, axis) => {
+  /*  const calculateAverageOffset = (samples, axis) => {
     const sum = samples.reduce((acc, sample) => acc + sample[axis], 0);
     return sum / samples.length;
-  };
+  }; */
 
   return {
     startRecording,

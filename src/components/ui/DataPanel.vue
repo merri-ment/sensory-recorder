@@ -11,9 +11,9 @@
       mz {{ magneticField.z }}
     </p>
     <p>
-      alpha {{ rotationRate.alpha }}<br />
-      beta {{ rotationRate.beta }}<br />
-      gamma {{ rotationRate.gamma }}
+      rx {{ rotationRate.x }}<br />
+      ry {{ rotationRate.y }}<br />
+      rz {{ rotationRate.x }}
     </p>
   </div>
 </template>

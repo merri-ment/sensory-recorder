@@ -123,76 +123,76 @@ export const useAppStore = defineStore({
       labels: [...LABELS],
       session: {},
       sessions: [
-        {
-          id: 0,
-          title: "session one",
-          label: LABELS[0],
-          data: dummyData,
-          time: 87.0,
-        },
-        {
-          id: 1,
-          title: "session two",
-          label: LABELS[1],
-          data: dummyData,
-          time: 7.0,
-        },
-        {
-          id: 2,
-          title: "session three",
-          label: LABELS[2],
-          data: dummyData,
-          time: 12.0,
-        },
-        {
-          id: 3,
-          title: "session four",
-          label: LABELS[3],
-          data: dummyData,
-          time: 24.0,
-        },
-        {
-          id: 4,
-          title: "session five",
-          label: LABELS[2],
-          data: dummyData,
-          time: 11.0,
-        },
-        {
-          id: 5,
-          title: "session six",
-          label: LABELS[0],
-          data: dummyData,
-          time: 10.0,
-        },
-        {
-          id: 2,
-          title: "session seven",
-          label: LABELS[3],
-          data: dummyData,
-          time: 5.0,
-        },
-        {
-          id: 3,
-          title: "session eight",
-          label: LABELS[0],
-          data: dummyData,
-          time: 21.0,
-        },
-        {
-          id: 4,
-          title: "session nine",
-          label: LABELS[1],
-          data: dummyData,
-          time: 30.0,
-        },
-        {
-          id: 5,
-          title: "session ten",
-          label: LABELS[1],
-          data: dummyData,
-          time: 2.0,
-        },
+        // {
+        //   id: 0,
+        //   title: "session one",
+        //   label: LABELS[0],
+        //   data: dummyData,
+        //   time: 87.0,
+        // },
+        // {
+        //   id: 1,
+        //   title: "session two",
+        //   label: LABELS[1],
+        //   data: dummyData,
+        //   time: 7.0,
+        // },
+        // {
+        //   id: 2,
+        //   title: "session three",
+        //   label: LABELS[2],
+        //   data: dummyData,
+        //   time: 12.0,
+        // },
+        // {
+        //   id: 3,
+        //   title: "session four",
+        //   label: LABELS[3],
+        //   data: dummyData,
+        //   time: 24.0,
+        // },
+        // {
+        //   id: 4,
+        //   title: "session five",
+        //   label: LABELS[2],
+        //   data: dummyData,
+        //   time: 11.0,
+        // },
+        // {
+        //   id: 5,
+        //   title: "session six",
+        //   label: LABELS[0],
+        //   data: dummyData,
+        //   time: 10.0,
+        // },
+        // {
+        //   id: 2,
+        //   title: "session seven",
+        //   label: LABELS[3],
+        //   data: dummyData,
+        //   time: 5.0,
+        // },
+        // {
+        //   id: 3,
+        //   title: "session eight",
+        //   label: LABELS[0],
+        //   data: dummyData,
+        //   time: 21.0,
+        // },
+        // {
+        //   id: 4,
+        //   title: "session nine",
+        //   label: LABELS[1],
+        //   data: dummyData,
+        //   time: 30.0,
+        // },
+        // {
+        //   id: 5,
+        //   title: "session ten",
+        //   label: LABELS[1],
+        //   data: dummyData,
+        //   time: 2.0,
+        // },
       ],
     };
   },
@@ -204,7 +204,7 @@ export const useAppStore = defineStore({
       this.sessions.forEach((session) => {
         session.data.forEach((val) => {
           console.log(val.i);
-          const row = `${val.i},${val.ax},${val.ay},${val.az},${val.mx},${val.my},${val.mz},${val.a},${val.b},${val.g},${session.label}`;
+          const row = `${val.i},${val.ax},${val.ay},${val.az},${val.mx},${val.my},${val.mz},${val.rx},${val.ry},${val.rz},${session.label}`;
           csvContent += row + "\n";
         });
       });

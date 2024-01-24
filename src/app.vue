@@ -1,11 +1,4 @@
-<script setup>
-import { IosSensors } from "@/capacitor/plugins/ios-sensors-plugin";
-
-onMounted(async () => {
-  await IosSensors.startDeviceMotion();
-  IosSensors.addListener("update", (data) => console.log(data));
-});
-</script>
+<script setup></script>
 
 <template>
   <div>
