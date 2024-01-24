@@ -5,11 +5,9 @@ const {
   requestPermission,
   startRecording,
   stopRecording,
-  isRecording,
   acceleration,
-  alpha,
-  beta,
-  gamma,
+  rotationRate,
+  magneticField,
   time,
   title,
   label,
@@ -17,6 +15,7 @@ const {
 
 const { appStore } = useStores();
 const router = useRouter();
+const route = useRoute();
 const state = ref(HOME_STATE.UNSET);
 
 const { labels } = toRefs(appStore);
@@ -27,7 +26,7 @@ const formattedTime = computed(() => {
 });
 
 const enter = (el, done) => {
-  state.value = HOME_STATE.LANDING;
+  state.value = route.query.state || HOME_STATE.LANDING;
   done();
 };
 
@@ -80,9 +79,8 @@ const onLabelChange = (value) => {
           <UiDataPanel
             class="data-panel"
             :acceleration="acceleration"
-            :alpha="alpha"
-            :gamma="gamma"
-            :beta="beta"
+            :rotationRate="rotationRate"
+            :magneticField="magneticField"
           />
         </div>
       </div>

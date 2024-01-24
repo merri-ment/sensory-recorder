@@ -2,7 +2,7 @@
   <Transition @enter="enter" :css="false" appear>
     <main ref="rootRef" class="session page">
       <div class="top">
-        <AppTitle class="title" :small="true" v-html="data.title" />
+        <AppTitle class="title" :small="true" v-html="title" />
       </div>
       <div class="content">
         <UiDropdown
@@ -10,13 +10,12 @@
           :labels="labels"
           class="dropdown"
         />
-        <UiDataPanel
+        <!--  <UiDataPanel
           class="data-panel"
           :acceleration="acceleration"
-          :alpha="alpha"
-          :gamma="gamma"
-          :beta="beta"
-        />
+          :rotationRate="rotationRate"
+          :magneticField="magneticField"
+        /> -->
       </div>
 
       <h2 class="timer">
@@ -35,6 +34,7 @@ const { labels } = toRefs(appStore);
 
 const id = computed(() => route.params.slug);
 const data = computed(() => appStore.getSessionById(Number(id.value)));
+const title = computed(() => data.value.title);
 const formattedTime = computed(() => FormatTime(data.value.time));
 
 const enter = (el, done) => {

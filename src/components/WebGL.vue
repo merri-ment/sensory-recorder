@@ -24,6 +24,8 @@ import {
   AxesHelper,
   Fog,
   GridHelper,
+  Euler,
+  Vector3,
 } from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { EVENTS, PAGES, MODAL_STATES, COLORS } from "@/config/app";
@@ -40,9 +42,7 @@ const tweenObj = { bgColor: COLORS.BLACK };
 let scene = null;
 let camera = null;
 let renderer = null;
-
 let path = null;
-
 let controls = null;
 let render = true;
 let views = [];
@@ -68,7 +68,10 @@ const setupThree = async () => {
   controls.update();
 
   scene = new Scene();
-  scene.fog = new Fog(COLORS.PINK, 0, 40);
+  // scene.fog = new Fog(COLORS.PINK, 0, 40);
+
+  const axesHelper = new AxesHelper(3);
+  scene.add(axesHelper);
 
   const size = 200;
   const divisions = 300;
@@ -80,7 +83,7 @@ const setupThree = async () => {
   scene.add(lineContainer);
 
   renderer = new WebGLRenderer({ canvas, antialias });
-  // renderer.setPixelRatio(2);
+  renderer.setPixelRatio(window.devicePixelRatio);
 };
 
 let i = 0;
@@ -180,9 +183,7 @@ const onRender = (val) => {
   render = val;
 };
 
-let motionPoint = { x: 0, y: 0, z: 0 };
 const createPath = (motionData) => {
-  // Create a point geometry
   var pathGeometry = new BufferGeometry();
   var pathMaterial = new LineBasicMaterial({
     color: COLORS.WHITE,
@@ -192,19 +193,43 @@ const createPath = (motionData) => {
   });
   var positions = new Float32Array(motionData.length * 3);
 
+  let x = motionData[0].ax;
+  let y = motionData[0].ay;
+  let z = motionData[0].az;
+
   for (let i = 0; i < motionData.length; i++) {
     const scale = 1;
-    const rotationFactor = 1; // Adjust this factor for the rotation sensitivity
+    const rotationFactor = 1;
+    const deltaThreshold = 0.1;
 
-    motionPoint.x += motionData[i].x;
-    motionPoint.y += motionData[i].y;
-    motionPoint.z += motionData[i].z;
+    // acceleration data
+    const deltaX = motionData[i].ax;
+    const deltaY = motionData[i].ay;
+    const deltaZ = motionData[i].az;
 
-    positions[i * 3] = motionPoint.x * scale;
-    positions[i * 3 + 1] = motionPoint.y * scale;
-    positions[i * 3 + 2] = motionPoint.z * scale;
+    // Check if there is movement along X axis
+    if (Math.abs(deltaX) > deltaThreshold) {
+      // Update X position based on delta value
+      x += deltaX;
+    }
 
-    // Add rotation to the positions
+    // Check if there is movement along Y axis
+    if (Math.abs(deltaY) > deltaThreshold) {
+      // Update Y position based on delta value
+      y += deltaY;
+    }
+
+    // Check if there is movement along Z axis
+    if (Math.abs(deltaZ) > deltaThreshold) {
+      // Update Z position based on delta value
+      z += deltaZ;
+    }
+
+    // Update positions based on the final accumulated values
+    positions[i * 3] = x * scale;
+    positions[i * 3 + 1] = y * scale;
+    positions[i * 3 + 2] = z * scale;
+
     const rotationX = motionData[i].a * rotationFactor;
     const rotationY = motionData[i].b * rotationFactor;
     const rotationZ = motionData[i].g * rotationFactor;
@@ -218,30 +243,25 @@ const createPath = (motionData) => {
   return new Line(pathGeometry, pathMaterial);
 };
 
-// Function to rotate a point in 3D space
+// Function to rotate a point in 3D space using Euler angles
 function rotatePoint(positions, index, rotationX, rotationY, rotationZ) {
   const x = positions[index];
   const y = positions[index + 1];
   const z = positions[index + 2];
 
-  // Apply rotation around the X-axis
-  const rotatedX = x;
-  const rotatedY = y * Math.cos(rotationX) - z * Math.sin(rotationX);
-  const rotatedZ = y * Math.sin(rotationX) + z * Math.cos(rotationX);
+  // Create Euler angles
+  const euler = new Euler(rotationX, rotationY, rotationZ, "XYZ");
 
-  // Apply rotation around the Y-axis
-  const finalRotatedX =
-    rotatedX * Math.cos(rotationY) + rotatedZ * Math.sin(rotationY);
-  const finalRotatedY = rotatedY;
-  const finalRotatedZ =
-    -rotatedX * Math.sin(rotationY) + rotatedZ * Math.cos(rotationY);
+  // Create a 3D vector
+  const vector = new Vector3(x, y, z);
 
-  // Apply rotation around the Z-axis
-  positions[index] =
-    finalRotatedX * Math.cos(rotationZ) - finalRotatedY * Math.sin(rotationZ);
-  positions[index + 1] =
-    finalRotatedX * Math.sin(rotationZ) + finalRotatedY * Math.cos(rotationZ);
-  positions[index + 2] = finalRotatedZ;
+  // Apply rotation to the vector
+  vector.applyEuler(euler);
+
+  // Update positions with the rotated values
+  positions[index] = vector.x;
+  positions[index + 1] = vector.y;
+  positions[index + 2] = vector.z;
 }
 
 onMounted(async () => {

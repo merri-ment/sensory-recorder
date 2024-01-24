@@ -1,4 +1,6 @@
 <script setup>
+import { HOME_STATE } from "@/config/app";
+
 const { appStore } = useStores();
 const { sessions } = toRefs(appStore);
 
@@ -33,6 +35,9 @@ const onDownload = () => {
         </li>
       </ul>
       <div class="bottom">
+        <NuxtLink :to="`/?state=${HOME_STATE.ASSIGN_LABEL}`">
+          <h2>NEW SESSION</h2>
+        </NuxtLink>
         <UiCtaButton
           class="btn"
           :copy="`Download dataset`"
@@ -107,7 +112,26 @@ main
     position: fixed
     height: 20rem
     z-index: 1
-    background: linear-gradient(to bottom,  rgba(255, 98, 183,0) 0%,rgba(255, 98, 183,1) 100%)
+    background: linear-gradient(to bottom,  rgba(255, 98, 183,0) 0%,rgba(255, 98, 183,1) 40%)
+
+    a
+      grid-column: 2/10
+      bottom: 7.75rem
+      position: absolute
+
+      h2
+        position: relative
+        display: inline
+        font-size: 2.2rem
+
+        &::after
+          width: 100%
+          height: 3px
+          content: ''
+          background: white
+          position: absolute
+          bottom: 0
+          left: 0
 
 
   .home

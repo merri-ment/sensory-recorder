@@ -6,9 +6,14 @@
       z {{ acceleration.z }}
     </p>
     <p>
-      alpha {{ alpha }}<br />
-      beta {{ beta }}<br />
-      gamma {{ gamma }}
+      mx {{ magneticField.x }}<br />
+      my {{ magneticField.y }}<br />
+      mz {{ magneticField.z }}
+    </p>
+    <p>
+      alpha {{ rotationRate.alpha }}<br />
+      beta {{ rotationRate.beta }}<br />
+      gamma {{ rotationRate.gamma }}
     </p>
   </div>
 </template>
@@ -19,17 +24,13 @@ const props = defineProps({
     default: () => ({ x: 0, y: 0, z: 0 }),
     type: Object,
   },
-  alpha: {
-    default: 0,
-    type: Number,
+  rotationRate: {
+    default: () => ({ x: 0, y: 0, z: 0 }),
+    type: Object,
   },
-  beta: {
-    default: 0,
-    type: Number,
-  },
-  gamma: {
-    default: 0,
-    type: Number,
+  magneticField: {
+    default: () => ({ x: 0, y: 0, z: 0 }),
+    type: Object,
   },
 });
 </script>
