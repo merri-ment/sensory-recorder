@@ -203,11 +203,12 @@ export const useAppStore = defineStore({
 
       this.sessions.forEach((session) => {
         session.data.forEach((val) => {
-          console.log(val.i);
           const row = `${val.i},${val.ax},${val.ay},${val.az},${val.mx},${val.my},${val.mz},${val.rx},${val.ry},${val.rz},${session.label}`;
           csvContent += row + "\n";
         });
       });
+
+      console.log(csvContent);
 
       const blob = new Blob([csvContent], { type: "text/csv" });
       const url = URL.createObjectURL(blob);

@@ -15,7 +15,9 @@
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
 		6B2D60A42C152B47005FB243 /* IosSensorsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2D60A32C152B47005FB243 /* IosSensorsPlugin.m */; };
-		6BD32B9C2C153096000899A6 /* iosSensors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD32B9B2C153096000899A6 /* iosSensors.swift */; };
+		6BCB7BA02C1A9F2B001EEE85 /* IosSensorsPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB7B9F2C1A9F2B001EEE85 /* IosSensorsPlugin.swift */; };
+		6BCB7BA52C1AE85E001EEE85 /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCB7BA42C1AE85E001EEE85 /* MyViewController.swift */; };
+		6BCB7BA72C1BADD5001EEE85 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6BCB7BA62C1BADD5001EEE85 /* PrivacyInfo.xcprivacy */; };
 		6BD32B9F2C153F77000899A6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BD32B9E2C153F77000899A6 /* CoreMotion.framework */; };
 		A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */; };
 /* End PBXBuildFile section */
@@ -31,7 +33,9 @@
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
 		6B2D60A32C152B47005FB243 /* IosSensorsPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IosSensorsPlugin.m; sourceTree = "<group>"; };
-		6BD32B9B2C153096000899A6 /* iosSensors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iosSensors.swift; sourceTree = "<group>"; };
+		6BCB7B9F2C1A9F2B001EEE85 /* IosSensorsPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IosSensorsPlugin.swift; sourceTree = "<group>"; };
+		6BCB7BA42C1AE85E001EEE85 /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		6BCB7BA62C1BADD5001EEE85 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		6BD32B9D2C15385B000899A6 /* App-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "App-Bridging-Header.h"; sourceTree = "<group>"; };
 		6BD32B9E2C153F77000899A6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +95,8 @@
 				504EC3131FED79650016851F /* Info.plist */,
 				2FAD9762203C412B000D30F8 /* config.xml */,
 				50B271D01FEDC1A000F3C39B /* public */,
+				6BCB7BA42C1AE85E001EEE85 /* MyViewController.swift */,
+				6BCB7BA62C1BADD5001EEE85 /* PrivacyInfo.xcprivacy */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -107,7 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				6BD32B9D2C15385B000899A6 /* App-Bridging-Header.h */,
-				6BD32B9B2C153096000899A6 /* iosSensors.swift */,
+				6BCB7B9F2C1A9F2B001EEE85 /* IosSensorsPlugin.swift */,
 				6B2D60A32C152B47005FB243 /* IosSensorsPlugin.m */,
 			);
 			path = IosSensors;
@@ -184,6 +190,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */,
+				6BCB7BA72C1BADD5001EEE85 /* PrivacyInfo.xcprivacy in Resources */,
 				50B271D11FEDC1A000F3C39B /* public in Resources */,
 				504EC30F1FED79650016851F /* Assets.xcassets in Resources */,
 				50379B232058CBB4000EE86E /* capacitor.config.json in Resources */,
@@ -235,9 +242,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BCB7BA02C1A9F2B001EEE85 /* IosSensorsPlugin.swift in Sources */,
 				6B2D60A42C152B47005FB243 /* IosSensorsPlugin.m in Sources */,
+				6BCB7BA52C1AE85E001EEE85 /* MyViewController.swift in Sources */,
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
-				6BD32B9C2C153096000899A6 /* iosSensors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
