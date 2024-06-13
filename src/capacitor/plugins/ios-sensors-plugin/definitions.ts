@@ -122,6 +122,7 @@ export interface MagneticField {
  *
  * @since 1.0.0
  */
+
 export interface ListenerEvent {
   /**
    * An object giving the acceleration of the device on the three axes X, Y, and Z. Acceleration is expressed in m/s.

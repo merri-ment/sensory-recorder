@@ -30,8 +30,13 @@ import {
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { EVENTS, PAGES, MODAL_STATES, COLORS } from "@/config/app";
 import { gsap } from "gsap";
+import AHRS from "ahrs";
 
-import ResizeService from "@/services/ResizeService";
+const ahrs = new AHRS({
+  sampleInterval: 20,
+  algorithm: "Mahony", // or 'Mahony'
+  beta: 0.4,
+});
 
 const { browserStore, appStore } = useStores();
 const route = useRoute();
@@ -71,6 +76,10 @@ const setupThree = async () => {
   // scene.fog = new Fog(COLORS.PINK, 0, 40);
 
   const axesHelper = new AxesHelper(3);
+  const xColor = new Color("red");
+  const yColor = new Color("green");
+  const zColor = new Color("blue");
+  axesHelper.setColors(xColor, yColor, zColor);
   scene.add(axesHelper);
 
   const size = 200;
@@ -193,14 +202,17 @@ const createPath = (motionData) => {
   });
   var positions = new Float32Array(motionData.length * 3);
 
-  let x = motionData[0].ax;
-  let y = motionData[0].ay;
-  let z = motionData[0].az;
+  let ay = motionData[0].ay;
+  let az = motionData[0].az;
+  let mx = motionData[0].mx;
+  let my = motionData[0].my;
+  let mz = motionData[0].mz;
+  ahrs.init(ax, ay, az, mx, my, mz);
 
   for (let i = 0; i < motionData.length; i++) {
     const scale = 1;
     const rotationFactor = 1;
-    const deltaThreshold = 0.1;
+    const deltaThreshold = 0.005;
 
     // acceleration data
     const deltaX = motionData[i].ax;
@@ -210,32 +222,28 @@ const createPath = (motionData) => {
     // Check if there is movement along X axis
     if (Math.abs(deltaX) > deltaThreshold) {
       // Update X position based on delta value
-      x += deltaX;
+      ax += deltaX;
     }
 
     // Check if there is movement along Y axis
     if (Math.abs(deltaY) > deltaThreshold) {
       // Update Y position based on delta value
-      y += deltaY;
+      ay += deltaY;
     }
 
     // Check if there is movement along Z axis
     if (Math.abs(deltaZ) > deltaThreshold) {
       // Update Z position based on delta value
-      z += deltaZ;
+      az += deltaZ;
     }
 
     // Update positions based on the final accumulated values
-    positions[i * 3] = x * scale;
-    positions[i * 3 + 1] = y * scale;
-    positions[i * 3 + 2] = z * scale;
-
-    const rotationX = motionData[i].rx * rotationFactor;
-    const rotationY = motionData[i].ry * rotationFactor;
-    const rotationZ = motionData[i].rz * rotationFactor;
+    positions[i * 3] = ax * scale;
+    positions[i * 3 + 1] = ay * scale;
+    positions[i * 3 + 2] = az * scale;
 
     // Apply rotation to the positions
-    rotatePoint(positions, i * 3, rotationX, rotationY, rotationZ);
+    rotatePoint(positions, i * 3, motionData);
   }
 
   pathGeometry.setAttribute("position", new BufferAttribute(positions, 3));
@@ -244,19 +252,31 @@ const createPath = (motionData) => {
 };
 
 // Function to rotate a point in 3D space using Euler angles
-function rotatePoint(positions, index, rotationX, rotationY, rotationZ) {
+function rotatePoint(positions, index, motionData) {
   const x = positions[index];
   const y = positions[index + 1];
   const z = positions[index + 2];
 
+  // Replace the placeholder values with actual motion sensor data
+
+  const { rx, ry, rz, mx, my, mz, ax, ay, az, i } = motionData[i];
+  ahrs.update(rx, ry, rz, ax, ay, az, mx, my, mz, i);
+
   // Create Euler angles
-  const euler = new Euler(rotationX, rotationY, rotationZ, "XYZ");
+  // const euler = new Euler(rotationY, rotationX, rotationZ, "YXZ");
+
+  // Retrieve the orientation information
+  // const quaternion = ahrs.getQuaternion();
+  const euler = ahrs.getEulerAngles();
 
   // Create a 3D vector
   const vector = new Vector3(x, y, z);
 
   // Apply rotation to the vector
-  vector.applyEuler(euler);
+  vector.applyEuler(new Euler(euler.heading, euler.pitch, euler.roll, "YXZ"));
+
+  console.log(euler);
+  console.log(vector);
 
   // Update positions with the rotated values
   positions[index] = vector.x;

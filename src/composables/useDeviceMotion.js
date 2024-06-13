@@ -34,9 +34,8 @@ export const useDeviceMotion = function () {
   };
 
   const update = (event) => {
+    console.log("accelerometer :: " - event.accelerometer);
     if (isRecording.value) {
-      console.log("update");
-
       acceleration.x = event.accelerometer.x;
       acceleration.y = event.accelerometer.y;
       acceleration.z = event.accelerometer.z;
@@ -91,9 +90,9 @@ export const useDeviceMotion = function () {
 
       recordedData.value.push({
         i: event.elapsedTime,
-        ax: TruncateNumber(acceleration.x, 3),
-        ay: TruncateNumber(acceleration.y, 3),
-        az: TruncateNumber(acceleration.z, 3),
+        ax: acceleration.x,
+        ay: acceleration.y,
+        az: acceleration.z,
         mx: TruncateNumber(magneticField.x, 3),
         my: TruncateNumber(magneticField.y, 3),
         mz: TruncateNumber(magneticField.z, 3),
@@ -134,7 +133,7 @@ export const useDeviceMotion = function () {
     /* if (accelHandler) {
       accelHandler.remove();
     } */
-    IosSensors.stopDeviceMotion();
+    IosSensors.stop();
   };
 
   /*  const calibrateData = () => {
