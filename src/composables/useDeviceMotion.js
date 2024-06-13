@@ -19,18 +19,18 @@ export const useDeviceMotion = function () {
   const permissionGranted = ref(false);
 
   const requestPermission = async () => {
-    try {
-      if (permissionGranted.value) {
-        return true;
-      } else {
-        await IosSensors.startDeviceMotion();
-        permissionGranted.value = true;
-      }
-    } catch (e) {
-      permissionGranted.value = false;
-      console.error(`Permission not granted: ${e}`);
-      return;
+    // try {
+    if (permissionGranted.value) {
+      return true;
+    } else {
+      await IosSensors.startDeviceMotion();
+      permissionGranted.value = true;
     }
+    // } catch (e) {
+    //   permissionGranted.value = false;
+    //   console.error(`Permission not granted: ${e}`);
+    //   return;
+    // }
   };
 
   const update = (event) => {

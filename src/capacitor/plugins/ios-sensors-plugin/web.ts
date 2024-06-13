@@ -12,12 +12,4 @@ export class IosSensorsWeb extends WebPlugin implements IosSensorsPlugin {
   }
 
   async stop(): Promise<any> {}
-
-  async startDeviceMotion(): Promise<any> {
-    // implementation for startDeviceMotion
-  }
-
-  async stopDeviceMotion(): Promise<any> {
-    // implementation for stopDeviceMotion
-  }
 }
