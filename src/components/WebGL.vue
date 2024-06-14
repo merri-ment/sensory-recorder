@@ -275,8 +275,8 @@ function rotatePoint(positions, index, motionData) {
   // Apply rotation to the vector
   vector.applyEuler(new Euler(euler.heading, euler.pitch, euler.roll, "YXZ"));
 
-  console.log(euler);
-  console.log(vector);
+  // console.log(euler);
+  // console.log(vector);
 
   // Update positions with the rotated values
   positions[index] = vector.x;

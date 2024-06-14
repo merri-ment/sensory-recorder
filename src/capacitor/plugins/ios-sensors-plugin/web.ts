@@ -7,9 +7,7 @@ export class IosSensorsWeb extends WebPlugin implements IosSensorsPlugin {
     super();
   }
 
-  async start(): Promise<any> {
-    console.log(this);
-  }
+  async start(): Promise<any> {}
 
   async stop(): Promise<any> {}
 }

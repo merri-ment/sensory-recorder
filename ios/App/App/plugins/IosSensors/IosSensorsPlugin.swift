@@ -26,9 +26,7 @@ public class IosSensorsPlugin: CAPPlugin {
             guard let motionData = motionData, error == nil else {
                 call.reject("Error getting motion data.")
                 return
-            }
-             
-          
+            } 
 
             let accelerometerData = [
                 "x": motionData.userAcceleration.x,

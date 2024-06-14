@@ -4,5 +4,6 @@
   "webDir": ".output/public",
   "server": {
     "androidScheme": "https"
-  }
+  },
+  "loggingBehavior": "none"
 }

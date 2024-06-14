@@ -18,13 +18,15 @@ export const useDeviceMotion = function () {
   const isRecording = ref(false);
   const permissionGranted = ref(false);
 
+  let listener = null;
+
   const requestPermission = async () => {
     try {
       if (permissionGranted.value) {
         return true;
       } else {
-        // await IosSensors.startDeviceMotion();
-        // permissionGranted.value = true;
+        await IosSensors.startDeviceMotion();
+        permissionGranted.value = true;
       }
     } catch (e) {
       permissionGranted.value = false;
@@ -34,7 +36,6 @@ export const useDeviceMotion = function () {
   };
 
   const update = (event) => {
-    console.log("accelerometer :: " - event.accelerometer);
     if (isRecording.value) {
       acceleration.x = event.accelerometer.x;
       acceleration.y = event.accelerometer.y;
@@ -88,6 +89,8 @@ export const useDeviceMotion = function () {
 
       // Your logic for using magnetometer data goes here
 
+      console.log(acceleration);
+
       recordedData.value.push({
         i: event.elapsedTime,
         ax: acceleration.x,
@@ -112,9 +115,7 @@ export const useDeviceMotion = function () {
     //   await calibrate();
     // }
 
-    IosSensors.addListener("update", update);
-
-    // accelHandler = await Motion.addListener("accel", update);
+    listener = await IosSensors.addListener("update", update);
   };
 
   const stopRecording = () => {
@@ -130,10 +131,9 @@ export const useDeviceMotion = function () {
     };
     console.log(session.data);
     appStore.sessions.unshift(session);
-    /* if (accelHandler) {
-      accelHandler.remove();
-    } */
+
     IosSensors.stop();
+    listener?.remove();
   };
 
   /*  const calibrateData = () => {

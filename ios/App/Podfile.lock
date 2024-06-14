@@ -1,34 +1,21 @@
 PODS:
   - Capacitor (6.1.0):
     - CapacitorCordova
-  - CapacitorBlobWriter (0.0.1):
-    - Capacitor
-    - GCDWebServer (~> 3.0)
   - CapacitorCordova (6.1.0)
   - CapacitorFilesystem (6.0.0):
     - Capacitor
   - CapacitorShare (6.0.1):
     - Capacitor
-  - GCDWebServer (3.5.4):
-    - GCDWebServer/Core (= 3.5.4)
-  - GCDWebServer/Core (3.5.4)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/.pnpm/@capacitor+ios@6.1.0_@capacitor+core@6.1.0/node_modules/@capacitor/ios`)"
-  - "CapacitorBlobWriter (from `../../node_modules/.pnpm/capacitor-blob-writer@1.1.16_@capacitor+core@6.1.0_@capacitor+filesystem@6.0.0/node_modules/capacitor-blob-writer`)"
   - "CapacitorCordova (from `../../node_modules/.pnpm/@capacitor+ios@6.1.0_@capacitor+core@6.1.0/node_modules/@capacitor/ios`)"
   - "CapacitorFilesystem (from `../../node_modules/.pnpm/@capacitor+filesystem@6.0.0_@capacitor+core@6.1.0/node_modules/@capacitor/filesystem`)"
   - "CapacitorShare (from `../../node_modules/.pnpm/@capacitor+share@6.0.1_@capacitor+core@6.1.0/node_modules/@capacitor/share`)"
 
-SPEC REPOS:
-  trunk:
-    - GCDWebServer
-
 EXTERNAL SOURCES:
   Capacitor:
     :path: "../../node_modules/.pnpm/@capacitor+ios@6.1.0_@capacitor+core@6.1.0/node_modules/@capacitor/ios"
-  CapacitorBlobWriter:
-    :path: "../../node_modules/.pnpm/capacitor-blob-writer@1.1.16_@capacitor+core@6.1.0_@capacitor+filesystem@6.0.0/node_modules/capacitor-blob-writer"
   CapacitorCordova:
     :path: "../../node_modules/.pnpm/@capacitor+ios@6.1.0_@capacitor+core@6.1.0/node_modules/@capacitor/ios"
   CapacitorFilesystem:
@@ -38,12 +25,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Capacitor: 187bd7847b6f71467015a20200a1a071be3e5f14
-  CapacitorBlobWriter: 110eeaf80611f19bf01a8a05ff3672149ed0baad
   CapacitorCordova: be703980ca797f847c3356f78fa175d21c8330c2
   CapacitorFilesystem: 60e59ba274c234a979e7a3be2552feaadcee4263
   CapacitorShare: 02222f2457ff003e642370a9c1ecd101baaa27c8
-  GCDWebServer: 2c156a56c8226e2d5c0c3f208a3621ccffbe3ce4
 
-PODFILE CHECKSUM: 791442bb52ad6ad66c65140ed8d31d1cfffd7cb0
+PODFILE CHECKSUM: 034601c1291aab84064bb676661111653a457e29
 
 COCOAPODS: 1.14.2
