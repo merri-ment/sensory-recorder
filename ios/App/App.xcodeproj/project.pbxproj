@@ -86,6 +86,7 @@
 		504EC3061FED79650016851F /* App */ = {
 			isa = PBXGroup;
 			children = (
+				6BCB7BA62C1BADD5001EEE85 /* PrivacyInfo.xcprivacy */,
 				6B8FE7862B60F5A00030D79F /* plugins */,
 				50379B222058CBB4000EE86E /* capacitor.config.json */,
 				504EC3071FED79650016851F /* AppDelegate.swift */,
@@ -96,7 +97,6 @@
 				2FAD9762203C412B000D30F8 /* config.xml */,
 				50B271D01FEDC1A000F3C39B /* public */,
 				6BCB7BA42C1AE85E001EEE85 /* MyViewController.swift */,
-				6BCB7BA62C1BADD5001EEE85 /* PrivacyInfo.xcprivacy */,
 			);
 			path = App;
 			sourceTree = "<group>";

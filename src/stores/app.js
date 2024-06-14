@@ -1,6 +1,9 @@
 import { defineStore } from "pinia";
 import { MODAL_STATES, LABELS } from "@/config/app";
 
+import { Directory, Filesystem, Encoding } from "@capacitor/filesystem";
+import { Share } from "@capacitor/share";
+
 const dummyDataWithMagneticField = [
   { mx: 0, my: 0, mz: 0 },
   { mx: 0.2, my: 0.1, mz: 0.05 },
@@ -197,7 +200,7 @@ export const useAppStore = defineStore({
     };
   },
   actions: {
-    exportToCSV() {
+    async exportToCSV() {
       let csvContent =
         "Timestamp,Acceleration X,Acceleration Y,Acceleration Z,Magnetic X,Magnetic Y,Magnetic Z,Alpha,Beta,Gamma,Label\n";
 
@@ -208,26 +211,33 @@ export const useAppStore = defineStore({
         });
       });
 
-      console.log(csvContent);
+      const fileName = "recorded_data.csv";
 
-      const blob = new Blob([csvContent], { type: "text/csv" });
-      const url = URL.createObjectURL(blob);
+      try {
+        // Write the CSV file to the filesystem
+        await Filesystem.writeFile({
+          path: fileName,
+          data: csvContent,
+          directory: Directory.Documents,
+          encoding: Encoding.UTF8,
+        });
 
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "recorded_data.csv";
+        // Get the URI of the file
+        const result = await Filesystem.getUri({
+          directory: Directory.Documents,
+          path: fileName,
+        });
 
-      // Triggering a click event programmatically
-      const clickEvent = new MouseEvent("click", {
-        bubbles: true,
-        cancelable: false,
-        view: window,
-      });
-
-      a.dispatchEvent(clickEvent);
-
-      // Release the object URL
-      URL.revokeObjectURL(url);
+        // Share the file
+        await Share.share({
+          title: "Recorded Data",
+          text: "GyroGraph :: Here is the recorded data",
+          url: result.uri,
+          dialogTitle: "GyroGraph :: Share the recorded data",
+        });
+      } catch (error) {
+        console.error("Error writing or sharing the file", error);
+      }
     },
 
     getSessionById(id) {

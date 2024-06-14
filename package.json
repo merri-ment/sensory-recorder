@@ -22,6 +22,7 @@
     "@capacitor/core": "^6.1.0",
     "@capacitor/filesystem": "^6.0.0",
     "@capacitor/ios": "^6.1.0",
+    "@capacitor/share": "^6.0.1",
     "@pinia/nuxt": "^0.5.1",
     "@tresjs/nuxt": "^2.1.2",
     "@vueuse/nuxt": "^10.11.0",
