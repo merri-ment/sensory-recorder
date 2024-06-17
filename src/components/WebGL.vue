@@ -120,6 +120,8 @@ const updatePath = (val) => {
   lineContainer.clear();
   const id = Number(route.params.slug);
   const session = appStore.getSessionById(id);
+
+  console.log(session);
   path = createPath(session.data);
   lineContainer.add(path);
 };
@@ -207,7 +209,7 @@ const createPath = (motionData) => {
   let mx = motionData[0].mx;
   let my = motionData[0].my;
   let mz = motionData[0].mz;
-  ahrs.init(ax, ay, az, mx, my, mz);
+  // ahrs.init(ax, ay, az, mx, my, mz);
 
   for (let i = 0; i < motionData.length; i++) {
     const scale = 1;

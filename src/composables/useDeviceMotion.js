@@ -83,13 +83,11 @@ export const useDeviceMotion = function () {
         (1 - filterAlpha) * acceleration.y;
       acceleration.z =
         filterAlpha * (acceleration.z - calibrationOffsets.acceleration.z) +
-        (1 - filterAlpha) * acceleration.z;
+        (1 - filterAlpha) * acceleration.z; */
 
-      time.value += interval; */
+      time.value += event.interval;
 
       // Your logic for using magnetometer data goes here
-
-      console.log(acceleration);
 
       recordedData.value.push({
         i: event.elapsedTime,
@@ -129,7 +127,6 @@ export const useDeviceMotion = function () {
       title: title.value,
       data: recordedData.value,
     };
-    console.log(session.data);
     appStore.sessions.unshift(session);
 
     IosSensors.stop();
