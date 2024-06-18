@@ -26,7 +26,7 @@ const formattedTime = computed(() => {
 });
 
 const enter = (el, done) => {
-  state.value = route.query.state || HOME_STATE.LANDING;
+  // state.value = route.query.state || HOME_STATE.LANDING;
   done();
 };
 
@@ -133,6 +133,7 @@ main
   position: absolute
   width: 100vw
   height: 100vh
+  pointer-events: none
 
   .assign-label-desc
     grid-column: 3/12
