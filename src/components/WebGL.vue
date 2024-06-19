@@ -26,6 +26,7 @@ import {
   GridHelper,
   Euler,
   Vector3,
+  Quaternion,
 } from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { EVENTS, PAGES, MODAL_STATES, COLORS } from "@/config/app";
@@ -58,12 +59,14 @@ const lineContainer = new Group();
 
 // test
 const material = new LineBasicMaterial({
-  color: 0x0000ff,
+  color: 0xffffff,
   linewidth: 10,
   side: DoubleSide,
 });
 const geometry = new BufferGeometry();
-const vertices = new Float32Array(3000); // Adjust the size as needed (1000 vertices)
+
+const maxLength = 3 * 1000;
+const vertices = new Float32Array(maxLength); // Adjust the size as needed (1000 vertices)
 geometry.setAttribute("position", new BufferAttribute(vertices, 3));
 const line = new Line(geometry, material);
 scene.add(line);
@@ -75,10 +78,12 @@ const zColor = new Color("blue");
 axesHelper.setColors(xColor, yColor, zColor);
 scene.add(axesHelper);
 
-let x = 0,
-  y = 0,
-  z = 0;
-let index = 0;
+// Create a sphere
+const sphereGeometry = new SphereGeometry(0.1, 20, 20);
+const sphereMaterial = new MeshBasicMaterial({ color: 0xff0000 });
+const sphere = new Mesh(sphereGeometry, sphereMaterial);
+// sphere.rotation.reorder("YXZ");
+scene.add(sphere);
 
 const setupThree = async () => {
   const canvas = stage.value;
@@ -146,6 +151,8 @@ const updatePath = (val) => {
 let alpha = 0,
   beta = 0,
   gamma = 0; // device orientation angles
+let position = { x: 0, y: 0, z: 0 };
+let index = 0;
 
 window.addEventListener("deviceorientation", (event) => {
   alpha = (event.alpha * Math.PI) / 180;
@@ -153,39 +160,42 @@ window.addEventListener("deviceorientation", (event) => {
   gamma = (event.gamma * Math.PI) / 180;
 });
 
+// Convert device coordinates to world coordinates
+const localToWorld = (acc) => {
+  const rotationMatrix = getRotationMatrix(alpha, beta, gamma);
+  return multiplyMatrixAndPoint(rotationMatrix, [acc.x, acc.y, acc.z]);
+};
+
 const handleMotion = (event) => {
   // Get acceleration data
   const acc = event.acceleration;
   if (acc) {
-    // Convert device coordinates to world coordinates
-    const rotationMatrix = getRotationMatrix(alpha, beta, gamma);
-    const worldAcc = multiplyMatrixAndPoint(rotationMatrix, [
-      acc.x,
-      acc.y,
-      acc.z,
-    ]);
+    const worldAcc = localToWorld(acc);
 
-    x += worldAcc[0] * 0.01;
-    y += worldAcc[1] * 0.01;
-    z += worldAcc[2] * 0.01;
+    position.x += worldAcc[0] * 0.01; // z-axis becomes x-axis
+    position.y += worldAcc[2] * 0.01; // x-axis becomes y-axis
+    position.z += worldAcc[1] * 0.01; // y-axis becomes z-axis
 
     // Update vertices
-    if (index < vertices.length / 3 - 1) {
-      vertices[index * 3] = x;
-      vertices[index * 3 + 1] = y;
-      vertices[index * 3 + 2] = z; // Comment this line
+    if (index < maxLength / 3 - 1) {
+      vertices[index * 3] = position.x;
+      vertices[index * 3 + 1] = position.y;
+      vertices[index * 3 + 2] = position.z;
       index++;
     } else {
       // Shift vertices to the left
-      for (let i = 3; i < vertices.length; i += 3) {
-        vertices[i - 3] = vertices[i];
-        vertices[i - 2] = vertices[i + 1];
-        vertices[i - 1] = vertices[i + 2]; // Comment this line
+      for (let i = 0; i < vertices.length - 3; i += 3) {
+        vertices[i] = vertices[i + 3];
+        vertices[i + 1] = vertices[i + 4];
+        vertices[i + 2] = vertices[i + 5];
       }
-      vertices[vertices.length - 3] = x;
-      vertices[vertices.length - 2] = y;
-      vertices[vertices.length - 1] = z; // Comment this line
+      // Add new vertex at the end
+      vertices[vertices.length - 3] = position.x;
+      vertices[vertices.length - 2] = position.y;
+      vertices[vertices.length - 1] = position.z;
     }
+    // Apply quaternion to sphere's rotation
+    sphere.position.set(position.x, position.y, position.z);
     geometry.attributes.position.needsUpdate = true;
   }
 };

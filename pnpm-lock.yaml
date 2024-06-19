@@ -35,6 +35,9 @@ dependencies:
   gsap:
     specifier: file:src/libs/gsap-shockingly-green/npm-install-this/gsap-bonus.tgz
     version: file:src/libs/gsap-shockingly-green/npm-install-this/gsap-bonus.tgz
+  kalman-filter:
+    specifier: ^2.3.0
+    version: 2.3.0
   three:
     specifier: ^0.160.1
     version: 0.160.1
@@ -1954,6 +1957,16 @@ packages:
 
   /@popperjs/core@2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: false
+
+  /@rayyamhk/complex@1.0.10:
+    resolution: {integrity: sha512-0HGH6SDcOd34zQVO97pfnIU6ul/qu0WkShZdupLLS3e5IEyNSkaX7mgVsDcWLpFNxLRs5RL2wS7iIYbsEp9MZg==}
+    dev: false
+
+  /@rayyamhk/matrix@1.0.8:
+    resolution: {integrity: sha512-EIvEnmcL4q5FMb/g20/FxoZnewkbiiSY4S0+TWu+jkAKF4E/p8ocUN3CET0AXUVJwaA7t8drtBwGNFE8qAgAxg==}
+    dependencies:
+      '@rayyamhk/complex': 1.0.10
     dev: false
 
   /@rollup/plugin-alias@5.1.0(rollup@4.18.0):
@@ -5844,6 +5857,14 @@ packages:
     resolution: {integrity: sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==}
     engines: {'0': node >= 0.2.0}
 
+  /kalman-filter@2.3.0:
+    resolution: {integrity: sha512-DcH0LcuJdU8uo9w8VaJvoDTQ5HtgpPAIpt81/3fP/zYBrfQVgQOa566ZVOeM6x93t5s95kByeEY26my4SrpH7w==}
+    dependencies:
+      '@rayyamhk/matrix': 1.0.8
+      matrix-inverse: 2.0.0
+      simple-linalg: 1.5.0
+    dev: false
+
   /keygrip@1.1.0:
     resolution: {integrity: sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ==}
     engines: {node: '>= 0.6'}
@@ -6086,6 +6107,10 @@ packages:
       ssri: 10.0.6
     transitivePeerDependencies:
       - supports-color
+
+  /matrix-inverse@2.0.0:
+    resolution: {integrity: sha512-iUZfjmnAEDah54qLlj63PYFnZvcCwW+mhfYgf3KrtDn1ruyVE5vFrEeJ77RfsHaqMN/L3ZLnP+5/O2E7bgKEvQ==}
+    dev: false
 
   /mdn-data@2.0.28:
     resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==}
@@ -7743,6 +7768,12 @@ packages:
       debug: 4.3.5
     transitivePeerDependencies:
       - supports-color
+
+  /simple-linalg@1.5.0:
+    resolution: {integrity: sha512-jeuUoszKtkcNyohIkXNEY5LEWdH6s8YQif8iTzh37cNOP7kqStORz4jziXOvCde9Y0VR+Zm06DkEaHtT1x12WQ==}
+    dependencies:
+      matrix-inverse: 2.0.0
+    dev: false
 
   /sirv@2.0.4:
     resolution: {integrity: sha512-94Bdh3cC2PKrbgSOUqTiGPWVZeSiXfKOVZNJniWoqrWrRkB1CJzBU3NEbiTsPcYy1lDsANA/THzS+9WBiy5nfQ==}
