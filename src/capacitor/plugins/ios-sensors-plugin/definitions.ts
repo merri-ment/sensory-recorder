@@ -96,21 +96,21 @@ export interface Acceleration {
  */
 export interface MagneticField {
   /**
-   * The amount of acceleration along the X axis.
+   * The amount of magnetic field along the X axis.
    *
    * @since 1.0.0
    */
   x: number;
 
   /**
-   * The amount of acceleration along the Y axis.
+   * The amount of magnetic field along the Y axis.
    *
    * @since 1.0.0
    */
   y: number;
 
   /**
-   * The amount of acceleration along the Z axis.
+   * The amount of magnetic field along the Z axis.
    *
    * @since 1.0.0
    */
@@ -122,38 +122,38 @@ export interface MagneticField {
  *
  * @since 1.0.0
  */
-
 export interface ListenerEvent {
   /**
-   * An object giving the acceleration of the device on the three axes X, Y, and Z. Acceleration is expressed in m/s.
+   * An object containing the raw acceleration data of the device on the three axes X, Y, and Z. Acceleration is expressed in m/s^2.
    *
    * @since 1.0.0
    */
-  accelerometer: Acceleration;
+  raw: {
+    accelerometer: Acceleration;
+    gyroscope: RotationRate;
+    magnetometer: MagneticField;
+  };
 
   /**
-   * An object giving the acceleration of the device on the three axes X, Y, and Z with the effect of gravity. Acceleration is expressed in m/s.
+   * An object containing the filtered acceleration data of the device on the three axes X, Y, and Z. Acceleration is expressed in m/s^2.
    *
    * @since 1.0.0
    */
-  magnetometer: MagneticField;
+  filtered: {
+    accelerometer: Acceleration;
+    gyroscope: RotationRate;
+    magnetometer: MagneticField;
+  };
 
   /**
-   * An object giving the rate of change of the device's orientation on the three orientation axes alpha, beta, and gamma. Rotation rate is expressed in degrees per second.
-   *
-   * @since 1.0.0
-   */
-  gyroscope: RotationRate;
-
-  /**
-   * A number representing the interval of time, in milliseconds, at which data is obtained from the device.
+   * A number representing the interval of time, in seconds, at which data is obtained from the device.
    *
    * @since 1.0.0
    */
   interval: number;
 
   /**
-   * A number representing the interval of time, in milliseconds, at which data is obtained from the device.
+   * A number representing the elapsed time, in seconds, since the start of the data collection.
    *
    * @since 1.0.0
    */

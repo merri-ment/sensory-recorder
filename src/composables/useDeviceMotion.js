@@ -7,9 +7,13 @@ export const useDeviceMotion = function () {
   const title = computed(
     () => `session <br/> ${NumberToWord(appStore.sessions.length)}`
   );
-  const acceleration = reactive({ x: 0, y: 0, z: 0 });
-  const magneticField = reactive({ x: 0, y: 0, z: 0 });
-  const rotationRate = reactive({ x: 0, y: 0, z: 0 });
+  const rawAcceleration = reactive({ x: 0, y: 0, z: 0 });
+  const rawMagneticField = reactive({ x: 0, y: 0, z: 0 });
+  const rawRotationRate = reactive({ x: 0, y: 0, z: 0 });
+
+  const filteredAcceleration = reactive({ x: 0, y: 0, z: 0 });
+  const filteredMagneticField = reactive({ x: 0, y: 0, z: 0 });
+  const filteredRotationRate = reactive({ x: 0, y: 0, z: 0 });
 
   const time = ref(0);
   const label = ref("");
@@ -37,17 +41,27 @@ export const useDeviceMotion = function () {
 
   const update = (event) => {
     if (isRecording.value) {
-      acceleration.x = event.accelerometer.x;
-      acceleration.y = event.accelerometer.y;
-      acceleration.z = event.accelerometer.z;
+      const { filtered, raw } = event;
 
-      magneticField.x = event.magnetometer.x;
-      magneticField.y = event.magnetometer.y;
-      magneticField.z = event.magnetometer.z;
+      filteredAcceleration.x = filtered.accelerometer.x;
+      filteredAcceleration.y = filtered.accelerometer.y;
+      filteredAcceleration.z = filtered.accelerometer.z;
+      filteredMagneticField.x = filtered.magnetometer.x;
+      filteredMagneticField.y = filtered.magnetometer.y;
+      filteredMagneticField.z = filtered.magnetometer.z;
+      filteredRotationRate.x = filtered.gyroscope.x;
+      filteredRotationRate.y = filtered.gyroscope.y;
+      filteredRotationRate.z = filtered.gyroscope.z;
 
-      rotationRate.x = event.gyroscope.x;
-      rotationRate.y = event.gyroscope.y;
-      rotationRate.z = event.gyroscope.z;
+      rawAcceleration.x = raw.accelerometer.x;
+      rawAcceleration.y = raw.accelerometer.y;
+      rawAcceleration.z = raw.accelerometer.z;
+      rawMagneticField.x = raw.magnetometer.x;
+      rawMagneticField.y = raw.magnetometer.y;
+      rawMagneticField.z = raw.magnetometer.z;
+      rawRotationRate.x = raw.gyroscope.x;
+      rawRotationRate.y = raw.gyroscope.y;
+      rawRotationRate.z = raw.gyroscope.z;
 
       // Calibrate data
       /*   if (!isCalibrated) {
@@ -65,41 +79,19 @@ export const useDeviceMotion = function () {
         });
       } */
 
-      /*  
-        Apply exponential moving average (EMA) filtering to acceleration data
-        EMA filter is used for real-time filtering of sensor data. 
-        It's a digital filtering technique that gives more weight to recent measurements while attenuating the influence of older measurements. 
-        This helps smooth out noise and variations in the data, providing a more stable output. 
-        The EMA filter is applied iteratively as new sensor readings arrive, 
-        and it helps in achieving a balance between responsiveness and stability in the data.
-      */
-
-      /*  const filterAlpha = 0.2; // Adjust as needed
-      acceleration.x =
-        filterAlpha * (acceleration.x - calibrationOffsets.acceleration.x) +
-        (1 - filterAlpha) * acceleration.x;
-      acceleration.y =
-        filterAlpha * (acceleration.y - calibrationOffsets.acceleration.y) +
-        (1 - filterAlpha) * acceleration.y;
-      acceleration.z =
-        filterAlpha * (acceleration.z - calibrationOffsets.acceleration.z) +
-        (1 - filterAlpha) * acceleration.z; */
-
       time.value += event.interval;
-
-      // Your logic for using magnetometer data goes here
 
       recordedData.value.push({
         i: event.elapsedTime,
-        ax: acceleration.x,
-        ay: acceleration.y,
-        az: acceleration.z,
-        mx: TruncateNumber(magneticField.x, 3),
-        my: TruncateNumber(magneticField.y, 3),
-        mz: TruncateNumber(magneticField.z, 3),
-        rx: TruncateNumber(rotationRate.x, 3),
-        ry: TruncateNumber(rotationRate.y, 3),
-        rz: TruncateNumber(rotationRate.z, 3),
+        ax: filteredAcceleration.x,
+        ay: filteredAcceleration.y,
+        az: filteredAcceleration.z,
+        mx: TruncateNumber(filteredMagneticField.x, 3),
+        my: TruncateNumber(filteredMagneticField.y, 3),
+        mz: TruncateNumber(filteredMagneticField.z, 3),
+        rx: TruncateNumber(filteredRotationRate.x, 3),
+        ry: TruncateNumber(filteredRotationRate.y, 3),
+        rz: TruncateNumber(filteredRotationRate.z, 3),
       });
     }
   };
@@ -227,9 +219,13 @@ export const useDeviceMotion = function () {
     label,
     time,
 
-    acceleration,
-    magneticField,
-    rotationRate,
+    rawAcceleration,
+    rawMagneticField,
+    rawRotationRate,
+
+    filteredAcceleration,
+    filteredMagneticField,
+    filteredRotationRate,
   };
 };
 
