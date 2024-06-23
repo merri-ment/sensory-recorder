@@ -12,17 +12,13 @@ import {
   Color,
   Group,
   BufferGeometry,
-  PointsMaterial,
   Line,
   BufferAttribute,
   LineBasicMaterial,
   MeshBasicMaterial,
   DoubleSide,
-  Points,
   Mesh,
-  SphereGeometry,
   AxesHelper,
-  Fog,
   GridHelper,
   Euler,
   Vector3,
@@ -30,16 +26,7 @@ import {
   BoxGeometry,
 } from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { EVENTS, PAGES, MODAL_STATES, COLORS } from "@/config/app";
-import { gsap } from "gsap";
-import AHRS from "ahrs";
-import { Motion } from "@capacitor/motion";
-
-const ahrs = new AHRS({
-  sampleInterval: 20,
-  algorithm: "Mahony", // or 'Mahony'
-  beta: 0.4,
-});
+import { PAGES, MODAL_STATES, COLORS } from "@/config/app";
 
 const {
   startRecording,
@@ -51,6 +38,8 @@ const {
   rawAcceleration,
   rawMagneticField,
   rawRotationRate,
+
+  interval,
 
   requestPermission,
 } = useDeviceMotion();
@@ -66,7 +55,6 @@ let camera = null;
 let renderer = null;
 let path = null;
 let controls = null;
-let render = true;
 let views = [];
 
 const stage = ref(null);
@@ -99,7 +87,8 @@ function pathDebugger(lineColor, boxColor, id) {
   );
   scene.add(mesh);
 
-  const threshold = 0.01;
+  // added threshold and decrement to dampen velocity
+  const threshold = 0.05;
   const decrement = 0.9;
   const position = new Vector3(0, 0, 0);
   let velocity = { x: 0, y: 0, z: 0 };
@@ -129,22 +118,21 @@ function pathDebugger(lineColor, boxColor, id) {
     }
 
     if (applyVelocity) {
-      // Define a threshold value
       // Only update the velocity if the acceleration is above the threshold
       if (Math.abs(acc.x) > threshold) {
-        velocity.x += acc.x * dt;
+        velocity.x += acc.x /* * dt */;
       } else {
         velocity.x *= decrement;
       }
 
       if (Math.abs(acc.z) > threshold) {
-        velocity.y += acc.z * dt;
+        velocity.y += acc.z /* * dt */;
       } else {
         velocity.y *= decrement;
       }
 
-      if (Math.abs(acc.y) > threshold) {
-        velocity.z += acc.y * dt;
+      if (acc.y && Math.abs(acc.y) > threshold) {
+        velocity.z += acc.y /* * dt */;
       } else {
         velocity.z *= decrement;
       }
@@ -188,15 +176,6 @@ function pathDebugger(lineColor, boxColor, id) {
   };
 }
 
-// Red :: Web DeviceMotion local coords
-const localPath = null; //pathDebugger(0xff0000, 0xff0000, "local");
-// localPath.mesh.rotation.reorder("YXZ");
-// localPath.mesh.rotationAutoUpdate = true;
-
-// White :: Web DeviceMotion localToWorld coords
-const localToWorldPath = null; //pathDebugger(0xffffff, 0xffffff, "localToWorld");
-
-// Blue :: Native DeviceMotion
 const nativeRawPath = pathDebugger(0x0000ff, 0x0000ff, "nativeRaw");
 const nativeFilteredPath = pathDebugger(0xff03d7, 0xff03d7, "nativeFiltered");
 nativeFilteredPath.mesh.rotation.reorder("YXZ");
@@ -236,15 +215,7 @@ const setupThree = async () => {
 };
 
 const onTick = (delta) => {
-  // Get the current time and calculate the time difference
-  const currentTime = Date.now();
-  const dt = (currentTime - lastTime) / 1000; // Time difference in seconds
-  lastTime = currentTime;
-
-  updateLocalToWorld(dt);
-  updateLocal(dt);
-  updateNative(dt);
-
+  updateNative(delta);
   controls.update();
   renderer.render(scene, camera);
 };
@@ -274,35 +245,11 @@ const updatePath = (val) => {
 
 let orientation = { alpha: 0, beta: 0, gamma: 0 };
 let device = { alpha: 0, beta: 0, gamma: 0 };
-
 let screenOrientation = 0;
 let lastTime = Date.now();
-
-// Convert device coordinates to world coordinates
-const localToWorld = (acc) => {
-  const rotationMatrix = getRotationMatrix(orientation);
-  return multiplyMatrixAndPoint(rotationMatrix, [acc.x, acc.y, acc.z]);
-};
-
 let worldAcc = { x: 0, y: 0, z: 0 };
 let acc;
 let gyro;
-const handleMotion = (event) => {
-  acc = event.acceleration;
-  if (acc) {
-    const w = localToWorld(acc);
-    worldAcc.x = w[0];
-    worldAcc.y = w[1];
-    worldAcc.z = w[2];
-  }
-
-  gyro = event.rotationRate;
-  if (gyro) {
-    device.alpha = gyro.alpha * DEG_TO_RAD; // Z
-    device.beta = gyro.beta * DEG_TO_RAD; // X'
-    device.gamma = gyro.gamma * DEG_TO_RAD; // Y''
-  }
-};
 
 // Inside onScreen_OrientationChange() we are supposed to use window.orientation values, but it is now deprecated. {@link https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation}
 // Screen.orientation.type is used instead, available on the window.screen property {@link https://developer.mozilla.org/en-US/docs/Web/API/Window/screen}.
@@ -357,24 +304,7 @@ var setObjectQuaternion = function (alpha, beta, gamma, orient) {
   return eulerFromQuat;
 };
 
-const updateLocal = (dt) => {
-  if (!acc || !localPath) {
-    return;
-  }
-
-  const orient = screenOrientation ? screenOrientation : 0;
-  const eular = setObjectQuaternion(
-    device.alpha,
-    device.beta,
-    device.gamma,
-    orient
-  );
-  if (eular) {
-    localPath?.update({ dt, rotation: eular, acc /* , scale: 5 */ });
-  }
-};
-
-const updateNative = (dt) => {
+const updateNative = (delta) => {
   // filteredMagneticField
 
   if (!filteredAcceleration || !nativeFilteredPath || !nativeRawPath) {
@@ -388,15 +318,16 @@ const updateNative = (dt) => {
     filteredRotationRate.z,
     orient
   );
+
   nativeFilteredPath?.update({
-    dt,
+    dt: delta,
     acc: filteredAcceleration,
     rotation: filteredEular,
     scale: 5,
     applyVelocity: true,
   });
 
-  /*   const rawEular = setObjectQuaternion(
+  const rawEular = setObjectQuaternion(
     rawRotationRate.x,
     rawRotationRate.y,
     rawRotationRate.z,
@@ -404,47 +335,13 @@ const updateNative = (dt) => {
   );
 
   nativeRawPath?.update({
-    dt,
+    dt: interval.value,
     acc: rawAcceleration,
     // rotation: rawEular,
     scale: 5,
-    applyVelocity: false,
-  }); */
+    applyVelocity: true,
+  });
 };
-
-const updateLocalToWorld = (dt) => {
-  if (!worldAcc || !localToWorldPath) {
-    return;
-  }
-  localToWorldPath?.update({ dt, acc: worldAcc /* , scale: 5 */ });
-};
-
-function getRotationMatrix({ alpha, beta, gamma }) {
-  // Compute rotation matrix
-  const cA = Math.cos(alpha);
-  const sA = Math.sin(alpha);
-  const cB = Math.cos(beta);
-  const sB = Math.sin(beta);
-  const cG = Math.cos(gamma);
-  const sG = Math.sin(gamma);
-
-  // Rotation matrix is a 3x3 matrix
-  return [
-    [cA * cG - sA * sB * sG, -cB * sA, cA * sG + cG * sA * sB],
-    [cG * sA + cA * sB * sG, cA * cB, sA * sG - cA * cG * sB],
-    [-cB * sG, sB, cB * cG],
-  ];
-}
-
-function multiplyMatrixAndPoint(matrix, point) {
-  // Multiply a 3x3 matrix by a 3D point
-  const [x, y, z] = point;
-  return [
-    matrix[0][0] * x + matrix[0][1] * y + matrix[0][2] * z,
-    matrix[1][0] * x + matrix[1][1] * y + matrix[1][2] * z,
-    matrix[2][0] * x + matrix[2][1] * y + matrix[2][2] * z,
-  ];
-}
 
 const activate = async () => {
   console.log("window click");
@@ -496,12 +393,10 @@ const updateBgColor = () => {
 };
 
 const home = () => {
-  render = true;
   friction = 0.04;
 };
 
 const projects = () => {
-  render = true;
   friction = 0.1;
 };
 
@@ -528,13 +423,9 @@ const modalNone = () => {
   updateRoute(route.name);
 };
 
-const modalMenu = () => {
-  render = true;
-};
+const modalMenu = () => {};
 
-const onRender = (val) => {
-  render = val;
-};
+const onRender = (val) => {};
 
 onMounted(async () => {
   try {

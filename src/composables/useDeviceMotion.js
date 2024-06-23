@@ -15,7 +15,8 @@ export const useDeviceMotion = function () {
   const filteredMagneticField = reactive({ x: 0, y: 0, z: 0 });
   const filteredRotationRate = reactive({ x: 0, y: 0, z: 0 });
 
-  const time = ref(0);
+  const elapsedTime = ref(0); // total time
+  const interval = ref(0); // time delta
   const label = ref("");
 
   const recordedData = ref([]);
@@ -79,19 +80,20 @@ export const useDeviceMotion = function () {
         });
       } */
 
-      time.value += event.interval;
+      elapsedTime.value = event.elapsedTime;
+      interval.value = event.interval;
 
       recordedData.value.push({
         i: event.elapsedTime,
         ax: filteredAcceleration.x,
         ay: filteredAcceleration.y,
         az: filteredAcceleration.z,
-        mx: TruncateNumber(filteredMagneticField.x, 3),
-        my: TruncateNumber(filteredMagneticField.y, 3),
-        mz: TruncateNumber(filteredMagneticField.z, 3),
-        rx: TruncateNumber(filteredRotationRate.x, 3),
-        ry: TruncateNumber(filteredRotationRate.y, 3),
-        rz: TruncateNumber(filteredRotationRate.z, 3),
+        mx: filteredMagneticField.x,
+        my: filteredMagneticField.y,
+        mz: filteredMagneticField.z,
+        rx: filteredRotationRate.x,
+        ry: filteredRotationRate.y,
+        rz: filteredRotationRate.z,
       });
     }
   };
@@ -115,7 +117,7 @@ export const useDeviceMotion = function () {
     const session = {
       id: len,
       label: label.value,
-      time: time.value,
+      time: elapsedTime.value,
       title: title.value,
       data: recordedData.value,
     };
@@ -217,7 +219,8 @@ export const useDeviceMotion = function () {
 
     title,
     label,
-    time,
+    elapsedTime,
+    interval,
 
     rawAcceleration,
     rawMagneticField,
