@@ -88,8 +88,8 @@ function pathDebugger(lineColor, boxColor, id) {
   scene.add(mesh);
 
   // added threshold and decrement to dampen velocity
-  const threshold = 0.05;
-  const decrement = 0.9;
+  const threshold = 0.13;
+  const decrement = 0.97;
   const position = new Vector3(0, 0, 0);
   let velocity = { x: 0, y: 0, z: 0 };
   let index = 0;
@@ -120,19 +120,19 @@ function pathDebugger(lineColor, boxColor, id) {
     if (applyVelocity) {
       // Only update the velocity if the acceleration is above the threshold
       if (Math.abs(acc.x) > threshold) {
-        velocity.x += acc.x /* * dt */;
+        velocity.x += acc.x * dt;
       } else {
         velocity.x *= decrement;
       }
 
       if (Math.abs(acc.z) > threshold) {
-        velocity.y += acc.z /* * dt */;
+        velocity.y += acc.z * dt;
       } else {
         velocity.y *= decrement;
       }
 
       if (acc.y && Math.abs(acc.y) > threshold) {
-        velocity.z += acc.y /* * dt */;
+        velocity.z += acc.y * dt;
       } else {
         velocity.z *= decrement;
       }
@@ -335,11 +335,11 @@ const updateNative = (delta) => {
   );
 
   nativeRawPath?.update({
-    dt: interval.value,
+    dt: delta,
     acc: rawAcceleration,
     // rotation: rawEular,
     scale: 5,
-    applyVelocity: true,
+    applyVelocity: false, //true,
   });
 };
 

@@ -17,8 +17,8 @@ public class IosSensorsPlugin: CAPPlugin {
             return
         }
 
-        motionManager.deviceMotionUpdateInterval = 0.01  // Adjust the interval as needed
-        motionManager.magnetometerUpdateInterval = 0.01  // Adjust the interval as needed
+        motionManager.deviceMotionUpdateInterval = 1.0 / 60.0 // Update 60 times per second
+        motionManager.magnetometerUpdateInterval = 1.0 / 60.0 // Update 60 times per second
 
         var startTime: TimeInterval = 0
 
