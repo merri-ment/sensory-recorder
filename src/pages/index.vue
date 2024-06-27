@@ -5,12 +5,15 @@ const {
   requestPermission,
   startRecording,
   stopRecording,
-  acceleration,
-  rotationRate,
-  magneticField,
+
   time,
   title,
   label,
+
+  accelerometer,
+  gyroscope,
+  magnetometer,
+  location,
 } = useDeviceMotion();
 
 const { appStore } = useStores();
@@ -26,7 +29,7 @@ const formattedTime = computed(() => {
 });
 
 const enter = (el, done) => {
-  // state.value = route.query.state || HOME_STATE.LANDING;
+  state.value = route.query.state || HOME_STATE.LANDING;
   done();
 };
 
@@ -63,6 +66,16 @@ const onLabelChange = (value) => {
   <Transition @enter="enter" @leave="leave" appear :css="false">
     <main class="home page">
       <div class="top">
+        <h2 class="timer">
+          {{ location.longitude }}
+        </h2>
+        <h2 class="timer">
+          {{ location.latitude }}
+        </h2>
+        <h2 class="timer">
+          {{ location.altitude }}
+        </h2>
+
         <AppTitle v-if="state === HOME_STATE.LANDING">
           Gyro
           <br />
@@ -78,9 +91,9 @@ const onLabelChange = (value) => {
           <AppTitle :small="true" v-html="title" />
           <UiDataPanel
             class="data-panel"
-            :acceleration="acceleration"
-            :rotationRate="rotationRate"
-            :magneticField="magneticField"
+            :acceleration="accelerometer"
+            :rotationRate="gyroscope"
+            :magneticField="magnetometer"
           />
         </div>
       </div>

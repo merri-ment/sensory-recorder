@@ -5,7 +5,7 @@ export interface IosSensorsPlugin {
   stopDeviceMotion(): Promise<any>;
 
   /**
-   * Add a listener for motion sensor updates.
+   * Add a listener for sensor updates.
    *
    * @param eventName The name of the event to listen for ("update").
    * @param listenerFunc The callback function to handle the event.
@@ -14,7 +14,7 @@ export interface IosSensorsPlugin {
    */
   addListener(
     eventName: "update",
-    listenerFunc: Listener
+    listenerFunc: SensorUpdateListener
   ): Promise<PluginListenerHandle>;
 
   /**
@@ -26,12 +26,12 @@ export interface IosSensorsPlugin {
 }
 
 /**
- * Callback function type for motion sensor update events.
+ * Callback function type for sensor update events.
  *
- * @param event The motion sensor update event.
+ * @param event The sensor update event.
  * @since 1.0.0
  */
-export type Listener = (event: ListenerEvent) => void;
+export type SensorUpdateListener = (event: SensorUpdateEvent) => void;
 
 /**
  * Interface representing the rotation rate data.
@@ -118,32 +118,31 @@ export interface MagneticField {
 }
 
 /**
- * Interface representing the motion sensor update event.
+ * Interface representing the sensor update event.
  *
  * @since 1.0.0
  */
-export interface ListenerEvent {
+export interface SensorUpdateEvent {
   /**
-   * An object containing the raw acceleration data of the device on the three axes X, Y, and Z. Acceleration is expressed in m/s^2.
+   * An object containing the accelerometer data.
    *
-   * @since 1.0.0
+   * @since 1.1.0
    */
-  raw: {
-    accelerometer: Acceleration;
-    gyroscope: RotationRate;
-    magnetometer: MagneticField;
-  };
+  accelerometer: Acceleration;
 
   /**
-   * An object containing the filtered acceleration data of the device on the three axes X, Y, and Z. Acceleration is expressed in m/s^2.
+   * An object containing the gyroscope data.
    *
-   * @since 1.0.0
+   * @since 1.1.0
    */
-  filtered: {
-    accelerometer: Acceleration;
-    gyroscope: RotationRate;
-    magnetometer: MagneticField;
-  };
+  gyroscope: RotationRate;
+
+  /**
+   * An object containing the magnetometer data.
+   *
+   * @since 1.1.0
+   */
+  magnetometer: MagneticField;
 
   /**
    * A number representing the interval of time, in seconds, at which data is obtained from the device.
@@ -158,4 +157,88 @@ export interface ListenerEvent {
    * @since 1.0.0
    */
   elapsedTime: number;
+
+  /**
+   * An object containing the location data.
+   *
+   * @since 1.1.0
+   */
+  location?: LocationData;
+
+  /**
+   * An object containing the altimeter data.
+   *
+   * @since 1.1.0
+   */
+  altimeter?: AltimeterData;
+}
+
+/**
+ * Interface representing the location data.
+ *
+ * @since 1.1.0
+ */
+export interface LocationData {
+  /**
+   * The latitude in degrees.
+   *
+   * @since 1.1.0
+   */
+  latitude: number;
+
+  /**
+   * The longitude in degrees.
+   *
+   * @since 1.1.0
+   */
+  longitude: number;
+
+  /**
+   * The altitude in meters.
+   *
+   * @since 1.1.0
+   */
+  altitude: number;
+
+  /**
+   * The speed in meters per second.
+   *
+   * @since 1.1.0
+   */
+  speed: number;
+
+  /**
+   * The course in degrees.
+   *
+   * @since 1.1.0
+   */
+  course: number;
+
+  /**
+   * The timestamp of the location data.
+   *
+   * @since 1.1.0
+   */
+  timestamp: number;
+}
+
+/**
+ * Interface representing the altimeter data.
+ *
+ * @since 1.1.0
+ */
+export interface AltimeterData {
+  /**
+   * The pressure in kilopascals.
+   *
+   * @since 1.1.0
+   */
+  pressure: number;
+
+  /**
+   * The relative altitude in meters.
+   *
+   * @since 1.1.0
+   */
+  relativeAltitude: number;
 }
