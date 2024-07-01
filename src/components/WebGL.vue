@@ -28,8 +28,6 @@ import {
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { PAGES, MODAL_STATES, COLORS } from "@/config/app";
 
-const { startRecording, stopRecording, requestPermission } = useDeviceMotion();
-
 const { browserStore, appStore } = useStores();
 const route = useRoute();
 
@@ -91,26 +89,11 @@ const resize = () => {
   }
 };
 
-const activate = async () => {
-  try {
-    window.removeEventListener("click", activate);
-    await requestPermission();
-    await startRecording();
-  } catch (e) {
-    // Handle error
-    console.log(e);
-    return;
-  }
-};
-
 const updateRoute = (val) => {
   lineContainer.visible = false;
   switch (val) {
     case PAGES.HOME:
       scene.background = new Color(COLORS.BLUE);
-
-      window.addEventListener("click", activate);
-
       break;
     case PAGES.RECORDINGS:
       scene.background = new Color(COLORS.PINK);

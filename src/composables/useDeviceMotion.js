@@ -42,15 +42,60 @@ export const useDeviceMotion = () => {
   };
 
   const onSensorUpdate = (e) => {
-    if (!isRecording.value) return;
+    console.log(e);
 
-    updateReactiveState(accelerometer, e.accelerometer);
-    updateReactiveState(magnetometer, e.magnetometer);
-    updateReactiveState(gyroscope, e.gyroscope);
-    updateReactiveState(location, e.location);
-    updateReactiveState(altimeter, e.altitude);
+    if (!isRecording.value) {
+      console.log("no isRecording value");
+      return;
+    }
 
-    elapsedTime.value = e.elapsedTime;
+    if (!e.accelerometer) {
+      console.log("no accelerometer data");
+    } else {
+      accelerometer.x = e.accelerometer.x;
+      accelerometer.y = e.accelerometer.y;
+      accelerometer.z = e.accelerometer.z;
+    }
+
+    if (!e.magnetometer) {
+      console.log("no magnetometer data");
+    } else {
+      magnetometer.x = e.magnetometer.x;
+      magnetometer.y = e.magnetometer.y;
+      magnetometer.z = e.magnetometer.z;
+    }
+
+    if (!e.gyroscope) {
+      console.log("no gyroscope data");
+    } else {
+      gyroscope.x = e.gyroscope.x;
+      gyroscope.y = e.gyroscope.y;
+      gyroscope.z = e.gyroscope.z;
+    }
+
+    if (!e.location) {
+      console.log("no location data");
+    } else {
+      location.altitude = e.location.altitude;
+      location.latitude = e.location.latitude;
+      location.longitude = e.location.longitude;
+      location.speed = e.location.speed;
+      location.course = e.location.course;
+    }
+
+    if (!e.altitude) {
+      console.log("no altitude data");
+    } else {
+      altimeter.pressure = e.altimeter.pressure;
+      altimeter.relativeAltitude = e.altimeter.relativeAltitude;
+    }
+
+    if (e.elapsedTime) {
+      elapsedTime.value = e.elapsedTime;
+    } else {
+      console.log(e);
+    }
+
     interval.value = e.interval;
 
     recordedData.value.push({
@@ -75,14 +120,7 @@ export const useDeviceMotion = () => {
     });
   };
 
-  const updateReactiveState = (reactiveState, data) => {
-    for (const key in data) {
-      reactiveState[key] = data[key];
-    }
-  };
-
   const startRecording = async () => {
-    if (!(await requestPermission())) return;
     isRecording.value = true;
     recordedData.value = [];
     listener = await IosSensors.addListener("update", onSensorUpdate);
@@ -100,7 +138,7 @@ export const useDeviceMotion = () => {
     };
     appStore.sessions.unshift(session);
 
-    IosSensors.stop();
+    IosSensors.stopDeviceMotion();
     listener?.remove();
   };
 

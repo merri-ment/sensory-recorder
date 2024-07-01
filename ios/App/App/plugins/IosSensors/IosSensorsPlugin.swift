@@ -15,6 +15,8 @@ public class IosSensorsPlugin: CAPPlugin, CLLocationManagerDelegate {
     private let alpha = 0.1 // Smoothing factor for EMA filtering
 
     private var startTime: TimeInterval = 0
+    private var latestLocationData: [String: Any]?
+    private var latestAltimeterData: [String: Double]?
 
     override public func load() {
         super.load()
@@ -24,7 +26,7 @@ public class IosSensorsPlugin: CAPPlugin, CLLocationManagerDelegate {
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 0.1 // Update every 1 meter
+        locationManager.distanceFilter = 0.1 // Update every 0.1 meter
     }
 
     @objc public func startDeviceMotion(_ call: CAPPluginCall) {
@@ -33,7 +35,7 @@ public class IosSensorsPlugin: CAPPlugin, CLLocationManagerDelegate {
             return
         }
 
-        startTime = 0
+        startTime = ProcessInfo.processInfo.systemUptime
         setupMotionManager()
         startLocationUpdates()
         startAltimeterUpdates()
@@ -62,7 +64,11 @@ public class IosSensorsPlugin: CAPPlugin, CLLocationManagerDelegate {
         if CMAltimeter.isRelativeAltitudeAvailable() {
             altimeter.startRelativeAltitudeUpdates(to: .main) { [weak self] (altitudeData, error) in
                 guard let self = self, let data = altitudeData else { return }
-                self.notifyAllListeners(pressure: data.pressure.doubleValue, relativeAltitude: data.relativeAltitude.doubleValue)
+                self.latestAltimeterData = [
+                    "pressure": data.pressure.doubleValue,
+                    "relativeAltitude": data.relativeAltitude.doubleValue
+                ]
+                self.emitConsolidatedData()
             }
         }
     }
@@ -88,13 +94,10 @@ public class IosSensorsPlugin: CAPPlugin, CLLocationManagerDelegate {
         let filteredGyroscopeData = lowPassFilter(gyroscopeData, lastValue: &lastGyroscopeData)
         let filteredMagnetometerData = lowPassFilter(magnetometerData, lastValue: &lastMagnetometerData)
 
-        let currentTime = motionData.timestamp
-        if startTime == 0 {
-            startTime = currentTime
-        }
-        let elapsedTime: TimeInterval = currentTime - startTime
+        let currentTime = ProcessInfo.processInfo.systemUptime
+        let elapsedTime = currentTime - startTime
 
-        let eventData: [String: Any] = [ 
+        let motionEventData: [String: Any] = [ 
             "accelerometer": filteredAccelerometerData,
             "gyroscope": filteredGyroscopeData,
             "magnetometer": filteredMagnetometerData,
@@ -102,7 +105,7 @@ public class IosSensorsPlugin: CAPPlugin, CLLocationManagerDelegate {
             "elapsedTime": elapsedTime
         ]
 
-        notifyAllListeners(eventData: eventData)
+        emitConsolidatedData(motionData: motionEventData)
     }
 
     private func lowPassFilter(_ newValue: [String: Double], lastValue: inout [String: Double]) -> [String: Double] {
@@ -116,25 +119,24 @@ public class IosSensorsPlugin: CAPPlugin, CLLocationManagerDelegate {
         ]
     }
 
-    private func notifyAllListeners(eventData: [String: Any] = [:], pressure: Double? = nil, relativeAltitude: Double? = nil) {
-        var combinedData = eventData
-        if let pressure = pressure, let relativeAltitude = relativeAltitude {
-            combinedData["altimeter"] = [
-                "pressure": pressure,
-                "relativeAltitude": relativeAltitude
-            ]
+    private func emitConsolidatedData(motionData: [String: Any]? = nil) {
+        var consolidatedData: [String: Any] = [:]
+        
+        if let motionData = motionData {
+            consolidatedData = motionData
         }
-        if let location = locationManager.location {
-            combinedData["location"] = [
-                "latitude": location.coordinate.latitude,
-                "longitude": location.coordinate.longitude,
-                "altitude": location.altitude,
-                "speed": location.speed,
-                "course": location.course,
-                "timestamp": location.timestamp.timeIntervalSince1970
-            ]
+        
+        if let locationData = latestLocationData {
+            consolidatedData["location"] = locationData
         }
-        notifyListeners("update", data: combinedData)
+        
+        if let altimeterData = latestAltimeterData {
+            consolidatedData["altimeter"] = altimeterData
+        }
+        
+        if !consolidatedData.isEmpty {
+            notifyListeners("update", data: consolidatedData)
+        }
     }
 
     @objc func stopDeviceMotion(_ call: CAPPluginCall) {
@@ -145,6 +147,15 @@ public class IosSensorsPlugin: CAPPlugin, CLLocationManagerDelegate {
     }
 
     public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        notifyAllListeners()
+        guard let location = locations.last else { return }
+        latestLocationData = [
+            "latitude": location.coordinate.latitude,
+            "longitude": location.coordinate.longitude,
+            "altitude": location.altitude,
+            "speed": location.speed,
+            "course": location.course,
+            "timestamp": location.timestamp.timeIntervalSince1970
+        ]
+        emitConsolidatedData()
     }
 }

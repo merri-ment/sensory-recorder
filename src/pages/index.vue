@@ -6,7 +6,7 @@ const {
   startRecording,
   stopRecording,
 
-  time,
+  elapsedTime,
   title,
   label,
 
@@ -21,15 +21,62 @@ const router = useRouter();
 const route = useRoute();
 const state = ref(HOME_STATE.UNSET);
 
+let synth;
+const text = ref("Select a label from the following options - ");
+const pitch = ref(1);
+const rate = ref(0.7);
+const voices = ref([]);
+const voice = ref();
+
+const {
+  isSupported: speechSynthesisSupported,
+  isPlaying,
+  status,
+  voiceInfo,
+  utterance,
+  error,
+  stop: speechSynthesisStop,
+  toggle,
+  speak,
+} = useSpeechSynthesis(text, {
+  lang: "en-US",
+  voice,
+  pitch,
+  rate,
+});
+
+const {
+  isSupported: speechRecognitionSupported,
+  isListening,
+  isFinal,
+  result,
+  start,
+  stop: speechRecognitionStop,
+} = useSpeechRecognition({
+  lang: "en-US",
+  continuous: true,
+  interimResults: false,
+});
+
 const { labels } = toRefs(appStore);
 label.value = labels.value[0];
 
 const formattedTime = computed(() => {
-  return FormatTime(time.value);
+  return FormatTime(elapsedTime.value);
 });
 
 const enter = (el, done) => {
   state.value = route.query.state || HOME_STATE.LANDING;
+
+  setTimeout(() => {
+    synth = window.speechSynthesis;
+
+    console.log(synth);
+
+    voices.value = synth.getVoices();
+    voice.value = voices.value[2];
+  });
+
   done();
 };
 
@@ -37,14 +84,35 @@ const leave = (el, done) => {
   done();
 };
 
-const onGoClick = () => {
+const onGoClick = async () => {
   state.value = HOME_STATE.ASSIGN_LABEL;
+
+  try {
+    if (speechSynthesisSupported) {
+      labels.value.forEach((val) => (text.value += `${val}. `));
+
+      text.value += " .... or say - New. Label.";
+      utterance.value.addEventListener("end", function () {
+        console.log("stopped");
+      });
+      utterance.value.lang = "en-US";
+      speak();
+    } else {
+      console.log("Speech synthesis not supported.");
+      record();
+    }
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 const onRecordClick = async () => {
+  state.value = HOME_STATE.RECORDING;
+};
+
+const record = async () => {
   await requestPermission();
   await startRecording();
-  state.value = HOME_STATE.RECORDING;
 };
 
 const onStopRecordClick = () => {
@@ -66,7 +134,7 @@ const onLabelChange = (value) => {
   <Transition @enter="enter" @leave="leave" appear :css="false">
     <main class="home page">
       <div class="top">
-        <h2 class="timer">
+        <!-- <h2 class="timer">
           {{ location.longitude }}
         </h2>
         <h2 class="timer">
@@ -74,7 +142,7 @@ const onLabelChange = (value) => {
         </h2>
         <h2 class="timer">
           {{ location.altitude }}
-        </h2>
+        </h2> -->
 
         <AppTitle v-if="state === HOME_STATE.LANDING">
           Gyro
@@ -146,7 +214,6 @@ main
   position: absolute
   width: 100vw
   height: 100vh
-  pointer-events: none
 
   .assign-label-desc
     grid-column: 3/12
