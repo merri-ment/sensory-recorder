@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@capacitor-community/text-to-speech':
+    specifier: ^4.0.2
+    version: 4.0.2(@capacitor/core@6.1.0)
   '@capacitor/core':
     specifier: ^6.1.0
     version: 6.1.0
@@ -451,6 +454,14 @@ packages:
       '@babel/helper-string-parser': 7.24.7
       '@babel/helper-validator-identifier': 7.24.7
       to-fast-properties: 2.0.0
+
+  /@capacitor-community/text-to-speech@4.0.2(@capacitor/core@6.1.0):
+    resolution: {integrity: sha512-lpkcCUGpBJEAOyR6biYsM/gGkq50ZFupLhO5HNyiACCa2QkR9uRqNHByMUAtvg/nFqlAIg/CVJ24Odn68JhKzw==}
+    peerDependencies:
+      '@capacitor/core': ^6.0.0
+    dependencies:
+      '@capacitor/core': 6.1.0
+    dev: false
 
   /@capacitor/cli@6.1.0:
     resolution: {integrity: sha512-HEKDh3+FuNZKFHmSDZ7nAnaX3bzhtznYk9GsZBMac1y4CTAxIykPX9wzZ3DzLeM/EbMBGFClUbefkIkimAyfYg==}

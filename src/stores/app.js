@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { MODAL_STATES, LABELS } from "@/config/app";
+import { MODAL_STATES, LABELS, UI_TYPE } from "@/config/app";
 
 import { Directory, Filesystem, Encoding } from "@capacitor/filesystem";
 import { Share } from "@capacitor/share";
@@ -12,6 +12,7 @@ export const useAppStore = defineStore({
       labels: [...LABELS],
       session: {},
       sessions: [],
+      ui: UI_TYPE.GUI,
     };
   },
   actions: {
@@ -42,6 +43,8 @@ export const useAppStore = defineStore({
           directory: Directory.Documents,
           path: fileName,
         });
+
+        this.modalState = MODAL_STATES.NONE;
 
         // Share the file
         await Share.share({

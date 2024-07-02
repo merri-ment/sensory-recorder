@@ -6,6 +6,7 @@
     <NuxtPage />
     <ModalMenu />
     <AppHeader />
+    <ModalDownload />
   </div>
 </template>
 

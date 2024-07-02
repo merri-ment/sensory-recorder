@@ -1,5 +1,5 @@
 <script setup>
-import { HOME_STATE } from "@/config/app";
+import { HOME_STATE, UI_TYPE } from "@/config/app";
 
 const {
   requestPermission,
@@ -21,29 +21,8 @@ const router = useRouter();
 const route = useRoute();
 const state = ref(HOME_STATE.UNSET);
 
-let synth;
-const text = ref("Select a label from the following options - ");
-const pitch = ref(1);
-const rate = ref(0.7);
-const voices = ref([]);
-const voice = ref();
-
-const {
-  isSupported: speechSynthesisSupported,
-  isPlaying,
-  status,
-  voiceInfo,
-  utterance,
-  error,
-  stop: speechSynthesisStop,
-  toggle,
-  speak,
-} = useSpeechSynthesis(text, {
-  lang: "en-US",
-  voice,
-  pitch,
-  rate,
-});
+const text = ref("Select a label from the following options, ");
+const { speak } = useTextToSpeech({ text, state });
 
 const {
   isSupported: speechRecognitionSupported,
@@ -67,16 +46,6 @@ const formattedTime = computed(() => {
 
 const enter = (el, done) => {
   state.value = route.query.state || HOME_STATE.LANDING;
-
-  setTimeout(() => {
-    synth = window.speechSynthesis;
-
-    console.log(synth);
-
-    voices.value = synth.getVoices();
-    voice.value = voices.value[2];
-  });
-
   done();
 };
 
@@ -87,31 +56,28 @@ const leave = (el, done) => {
 const onGoClick = async () => {
   state.value = HOME_STATE.ASSIGN_LABEL;
 
-  try {
-    if (speechSynthesisSupported) {
+  if (appStore.ui === UI_TYPE.VOICE) {
+    try {
       labels.value.forEach((val) => (text.value += `${val}. `));
-
-      text.value += " .... or say - New. Label.";
-      utterance.value.addEventListener("end", function () {
-        console.log("stopped");
-      });
-      utterance.value.lang = "en-US";
-      speak();
-    } else {
-      console.log("Speech synthesis not supported.");
-      record();
+      text.value += ", or say,  New Label.";
+      // utterance.value.addEventListener("end", function () {
+      //   console.log("stopped");
+      // record();
+      // });
+      speak.value();
+    } catch (e) {
+      console.log(e);
     }
-  } catch (e) {
-    console.log(e);
   }
 };
 
 const onRecordClick = async () => {
   state.value = HOME_STATE.RECORDING;
+  record();
 };
 
 const record = async () => {
-  await requestPermission();
+  // await requestPermission();
   await startRecording();
 };
 

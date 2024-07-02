@@ -1,4 +1,8 @@
 import { IosSensors } from "@/capacitor/plugins/ios-sensors-plugin";
+import { LABELS } from "@/config/app";
+
+const countMap = {};
+LABELS.forEach((label) => (countMap[label] = 0));
 
 export const useDeviceMotion = () => {
   const { appStore } = useStores();
@@ -28,9 +32,9 @@ export const useDeviceMotion = () => {
   let listener = null;
 
   const requestPermission = async () => {
-    try {
+    // await IosSensors.startDeviceMotion();
+    /* try {
       if (!permissionGranted.value) {
-        await IosSensors.startDeviceMotion();
         permissionGranted.value = true;
       }
       return true;
@@ -38,7 +42,7 @@ export const useDeviceMotion = () => {
       permissionGranted.value = false;
       console.error(e);
       return false;
-    }
+    } */
   };
 
   const onSensorUpdate = (e) => {
@@ -83,7 +87,7 @@ export const useDeviceMotion = () => {
       location.course = e.location.course;
     }
 
-    if (!e.altitude) {
+    if (!e.altimeter) {
       console.log("no altitude data");
     } else {
       altimeter.pressure = e.altimeter.pressure;
@@ -98,38 +102,42 @@ export const useDeviceMotion = () => {
 
     interval.value = e.interval;
 
-    recordedData.value.push({
-      elapsedTime: elapsedTime.value,
-      interval: interval.value,
-      ax: accelerometer.x,
-      ay: accelerometer.y,
-      az: accelerometer.z,
-      mx: magnetometer.x,
-      my: magnetometer.y,
-      mz: magnetometer.z,
-      gx: gyroscope.x,
-      gy: gyroscope.y,
-      gz: gyroscope.z,
-      latitude: location.latitude,
-      longitude: location.longitude,
-      altitude: location.altitude,
-      speed: location.speed,
-      course: location.course,
-      pressure: altimeter.pressure,
-      relativeAltitude: altimeter.relativeAltitude,
-    });
+    if (elapsedTime.value > 0) {
+      recordedData.value.push({
+        elapsedTime: elapsedTime.value,
+        interval: interval.value,
+        ax: accelerometer.x,
+        ay: accelerometer.y,
+        az: accelerometer.z,
+        mx: magnetometer.x,
+        my: magnetometer.y,
+        mz: magnetometer.z,
+        gx: gyroscope.x,
+        gy: gyroscope.y,
+        gz: gyroscope.z,
+        latitude: location.latitude,
+        longitude: location.longitude,
+        altitude: location.altitude,
+        speed: location.speed,
+        course: location.course,
+        pressure: altimeter.pressure,
+        relativeAltitude: altimeter.relativeAltitude,
+      });
+    }
   };
 
   const startRecording = async () => {
+    listener = await IosSensors.addListener("update", onSensorUpdate);
+    await IosSensors.startDeviceMotion();
     isRecording.value = true;
     recordedData.value = [];
-    listener = await IosSensors.addListener("update", onSensorUpdate);
   };
 
   const stopRecording = () => {
     isRecording.value = false;
-
+    countMap[label.value]++;
     const session = {
+      num: countMap[label.value],
       id: appStore.sessions.length,
       label: label.value,
       time: elapsedTime.value,

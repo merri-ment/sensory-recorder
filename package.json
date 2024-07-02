@@ -19,6 +19,7 @@
     "vue-router": "^4.3.3"
   },
   "dependencies": {
+    "@capacitor-community/text-to-speech": "^4.0.2",
     "@capacitor/core": "^6.1.0",
     "@capacitor/filesystem": "^6.0.0",
     "@capacitor/ios": "^6.1.0",

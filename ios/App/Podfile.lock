@@ -1,6 +1,8 @@
 PODS:
   - Capacitor (6.1.0):
     - CapacitorCordova
+  - CapacitorCommunityTextToSpeech (4.0.2):
+    - Capacitor
   - CapacitorCordova (6.1.0)
   - CapacitorFilesystem (6.0.0):
     - Capacitor
@@ -9,6 +11,7 @@ PODS:
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/.pnpm/@capacitor+ios@6.1.0_@capacitor+core@6.1.0/node_modules/@capacitor/ios`)"
+  - "CapacitorCommunityTextToSpeech (from `../../node_modules/.pnpm/@capacitor-community+text-to-speech@4.0.2_@capacitor+core@6.1.0/node_modules/@capacitor-community/text-to-speech`)"
   - "CapacitorCordova (from `../../node_modules/.pnpm/@capacitor+ios@6.1.0_@capacitor+core@6.1.0/node_modules/@capacitor/ios`)"
   - "CapacitorFilesystem (from `../../node_modules/.pnpm/@capacitor+filesystem@6.0.0_@capacitor+core@6.1.0/node_modules/@capacitor/filesystem`)"
   - "CapacitorShare (from `../../node_modules/.pnpm/@capacitor+share@6.0.1_@capacitor+core@6.1.0/node_modules/@capacitor/share`)"
@@ -16,6 +19,8 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Capacitor:
     :path: "../../node_modules/.pnpm/@capacitor+ios@6.1.0_@capacitor+core@6.1.0/node_modules/@capacitor/ios"
+  CapacitorCommunityTextToSpeech:
+    :path: "../../node_modules/.pnpm/@capacitor-community+text-to-speech@4.0.2_@capacitor+core@6.1.0/node_modules/@capacitor-community/text-to-speech"
   CapacitorCordova:
     :path: "../../node_modules/.pnpm/@capacitor+ios@6.1.0_@capacitor+core@6.1.0/node_modules/@capacitor/ios"
   CapacitorFilesystem:
@@ -25,10 +30,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Capacitor: 187bd7847b6f71467015a20200a1a071be3e5f14
+  CapacitorCommunityTextToSpeech: b0a80a310596ef2f634c21b03d07880a5f3559f4
   CapacitorCordova: be703980ca797f847c3356f78fa175d21c8330c2
   CapacitorFilesystem: 60e59ba274c234a979e7a3be2552feaadcee4263
   CapacitorShare: 02222f2457ff003e642370a9c1ecd101baaa27c8
 
-PODFILE CHECKSUM: 034601c1291aab84064bb676661111653a457e29
+PODFILE CHECKSUM: 33755f3c190347832e68b148ce76f5b9bf631202
 
 COCOAPODS: 1.14.2

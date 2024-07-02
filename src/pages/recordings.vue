@@ -1,5 +1,5 @@
 <script setup>
-import { HOME_STATE } from "@/config/app";
+import { HOME_STATE, MODAL_STATES } from "@/config/app";
 
 const { appStore } = useStores();
 const { sessions } = toRefs(appStore);
@@ -11,7 +11,9 @@ const leave = (el, done) => {
   done();
 };
 
-const onDownload = () => {
+const onDownload = async () => {
+  appStore.modalState = MODAL_STATES.DOWNLOADING;
+  await PromiseTimeout(100);
   appStore.exportToCSV();
 };
 </script>
@@ -29,7 +31,10 @@ const onDownload = () => {
       <ul>
         <li v-for="(session, index) in sessions" :key="index">
           <NuxtLink :to="`/session/${session.id}`">
-            <h2>{{ session.label }} - {{ FormatTime(session.time) }}</h2>
+            <h2>
+              {{ session.num }} - {{ session.label }} -
+              {{ FormatTime(session.time) }}
+            </h2>
             <UiCloseButton />
           </NuxtLink>
         </li>
